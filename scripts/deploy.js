@@ -18,10 +18,13 @@ async function main() {
   // We get the contract to deploy
   const MockFocusPool = await hre.ethers.getContractFactory("MockFocusPool");
   const mockFocusPool = await MockFocusPool.deploy();
-
   await mockFocusPool.deployed();
-
   console.log("MockFocusPool deployed to:", mockFocusPool.address);
+
+  const FrankensteinDAO = await hre.ethers.getContractFactory("FrankensteinDAO");
+  const frankensteinDAO = await FrankensteinDAO.deploy(mockFocusPool.address);
+  await frankensteinDAO.deployed();
+  console.log("FrankensteinDAO deployed to:", frankensteinDAO.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere

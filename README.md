@@ -34,6 +34,13 @@ Anyone can call the robot, and it should be a scheduled operation. However, the 
 1. Install hardhat using "npm install -g hardhat"
 2. Clone this repository in some folder
 3. In this folder install the depenencies using "npm install"
+
+To test the smart contracts run "npx hardhat test"
+
+To deploy and run smart contracts
+1. Run "npx hardhat node" in console and leave it running
+2. Run "npx hardhat run scrtipts/deploy.js" to deploy the smart contracts
+3. Run the web service using "TBD!!!"
 ## Basic Sample Hardhat Project
 
 This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
