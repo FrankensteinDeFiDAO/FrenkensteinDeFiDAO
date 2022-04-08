@@ -21,34 +21,31 @@ contract FrankensteinDAO {
         pool = _pool;
     }
 
-    function propose(uint8 op, uint deadlineBlock, uint[] memory parameters) external {
+    function propose(uint8 op, uint deadlineBlock, uint[] memory parameters) external returns (uint proposalId) {
         require(pool.balanceOf(msg.sender) > 0, "FrankensteinDAO: NOT_A_MEMBER"); // Must have liquidity in pool
+        proposalId = proposals.length;
+        proposals.push();
         if (0 == op) { // setSwapFee(uint16 _fee)
-            proposals.push();
-            proposals[proposals.length].op == 0;
-            proposals[proposals.length].parameters.push(parameters[0]);
-            proposals[proposals.length].deadlineBlock = deadlineBlock;
+            proposals[proposalId].op == 0;
+            proposals[proposalId].parameters.push(parameters[0]);
+            proposals[proposalId].deadlineBlock = deadlineBlock;
         } else if (1 == op) { // shiftRange(uint256 _priceShiftFactor)
-            proposals.push();
-            proposals[proposals.length].op == 1;
-            proposals[proposals.length].parameters.push(parameters[0]);
-            proposals[proposals.length].deadlineBlock = deadlineBlock;
+            proposals[proposalId].op == 1;
+            proposals[proposalId].parameters.push(parameters[0]);
+            proposals[proposalId].deadlineBlock = deadlineBlock;
         } else if (2 == op) { // zoomRange(uint256 _priceZoomFactor)
-            proposals.push();
-            proposals[proposals.length].op == 2;
-            proposals[proposals.length].parameters.push(parameters[0]);
-            proposals[proposals.length].deadlineBlock = deadlineBlock;
+            proposals[proposalId].op == 2;
+            proposals[proposalId].parameters.push(parameters[0]);
+            proposals[proposalId].deadlineBlock = deadlineBlock;
         } else if (3 == op) { // IRobot
-            proposals.push();
-            proposals[proposals.length].op == 3;
-            proposals[proposals.length].parameters.push(parameters[0]); // cycle
-            proposals[proposals.length].parameters.push(parameters[1]); // IRobot (address)
-            proposals[proposals.length].deadlineBlock = deadlineBlock;
+            proposals[proposalId].op == 3;
+            proposals[proposalId].parameters.push(parameters[0]); // cycle
+            proposals[proposalId].parameters.push(parameters[1]); // IRobot (address)
+            proposals[proposalId].deadlineBlock = deadlineBlock;
         } else if (4 == op) { // IRobot remove
-            proposals.push();
-            proposals[proposals.length].op == 4;
-            proposals[proposals.length].parameters.push(parameters[0]); // remove proposalId
-            proposals[proposals.length].deadlineBlock = deadlineBlock;
+            proposals[proposalId].op == 4;
+            proposals[proposalId].parameters.push(parameters[0]); // remove proposalId
+            proposals[proposalId].deadlineBlock = deadlineBlock;
         }
     }
 
