@@ -1,7 +1,7 @@
-// SPDX-License-Identifier: BUSL-1.1
 import React, { useState } from "react";
-import 'bootstrap/dist/css/bootstrap.css'
-import { Accordion, Tabs, Tab } from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.css';
+import '../App.css';
+import { Accordion, Tabs, Tab, Button } from 'react-bootstrap';
 
 function Body(props) {
     const [activeTab, setActiveTab] = useState("list");
@@ -20,7 +20,9 @@ function Body(props) {
         </Accordion.Item>
         </Accordion> 
 
-        <br/><br/><br/>
+        <br/><br/>
+        <Button className="btn-custom-primary">Test</Button>
+        <br/><br/>
 
         <Tabs activeKey={activeTab} transition={false} id="noanim-tab-example" onSelect={onSelect}>
             <Tab eventKey="one" title="One">

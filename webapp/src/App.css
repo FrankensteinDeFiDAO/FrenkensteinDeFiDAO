@@ -28,6 +28,23 @@
   color: #61dafb;
 }
 
+.btn-primary {
+  background-color: darkcyan;
+  border: 1px darkcyan;
+}
+.btn-primary:hover {
+  background-color: cyan;
+  border: 1px darkcyan;
+}
+.btn-primary:active {
+  background-color: cyan;
+  border: 1px darkcyan;
+}
+.btn-primary:focus {
+  background-color: cyan;
+  border: 1px darkcyan;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
