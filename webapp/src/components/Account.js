@@ -40,6 +40,10 @@ function Account() {
     useEffect(() => {
         setWallet();
         setChainName();
+        window.ethereum.on('accountsChanged', accounts => { setWallet(); });
+        window.ethereum.on('chainChanged', async (chainId) => { setChainName(); });
+        window.ethereum.on('connect', async (connectInfo) => { setChainName() });
+        window.ethereum.on('disconnect', (error) => { window.location.reload(); });
       }, []);
 
     if (account) return (<><div>Account: {account}</div><div>on {chain}</div> </>);

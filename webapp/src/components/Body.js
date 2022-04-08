@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: BUSL-1.1
-import React from 'react'
+import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.css'
 import { Accordion, Tabs, Tab } from 'react-bootstrap'
 
 function Body(props) {
-    const [activeTab, setActiveTab] = React.useState("list");
+    const [activeTab, setActiveTab] = useState("list");
     
     const onSelect = (key) => {
         setActiveTab(key);
