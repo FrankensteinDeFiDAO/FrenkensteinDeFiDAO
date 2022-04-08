@@ -25,7 +25,13 @@ async function main() {
   const frankensteinDAO = await FrankensteinDAO.deploy(mockFocusPool.address);
   await frankensteinDAO.deployed();
   console.log("FrankensteinDAO deployed to:", frankensteinDAO.address);
-}
+
+  const MockRobot = await hre.ethers.getContractFactory("MockRobot");
+  const mockRobot = await MockRobot.deploy();
+  await mockRobot.deployed();
+  console.log("MockRobot deployed to:", mockRobot.address);
+
+ }
 
 // We recommend this pattern to be able to use async/await everywhere
 // and properly handle errors.
