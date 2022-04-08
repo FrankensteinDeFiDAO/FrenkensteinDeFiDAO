@@ -42,7 +42,7 @@ contract FrankensteinDAO {
             proposals.push();
             proposals[proposals.length].op == 3;
             proposals[proposals.length].parameters.push(parameters[0]); // cycle
-            proposals[proposals.length].parameters.push(parameters[0]); // IRobot (address)
+            proposals[proposals.length].parameters.push(parameters[1]); // IRobot (address)
             proposals[proposals.length].deadlineBlock = deadlineBlock;
         } else if (4 == op) { // IRobot remove
             proposals.push();
