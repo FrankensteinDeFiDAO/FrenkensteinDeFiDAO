@@ -52,7 +52,7 @@ contract FrankensteinDAO {
     function vote(uint porposalId, bool voteYes) external {
         require(proposals.length > porposalId, "FrankensteinDAO: NO_SUCH_PROPOSAL");
         require(proposals[porposalId].deadlineBlock >= block.number, "FrankensteinDAO: TOO_LATE");
-        require(proposals[porposalId].voted[msg.sender] == 0, "FrankensteinDAO: TOO_LATE");
+        require(proposals[porposalId].voted[msg.sender] == 0, "FrankensteinDAO: ALREADY_VOTED");
         proposals[porposalId].voted[msg.sender] = pool.balanceOf(msg.sender);
         if (voteYes) proposals[porposalId].yesVotes += pool.balanceOf(msg.sender); // Amount of liquidity; we are assuming that liquidity is not removed after voting (for the hackathon simplicity)
     }
