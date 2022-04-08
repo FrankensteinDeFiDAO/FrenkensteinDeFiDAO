@@ -1,38 +1,51 @@
 import React from 'react'
-import Web3 from 'web3'
 import { ethers } from 'ethers'
 
-async function getChainName() {
-    const provider = new ethers.providers.Web3Provider(window.ethereum)
-    const network = await provider.getNetwork()
-    return network.name + "(" + network.chainId + ")"
-}
-
 function Account() {
-    const [account, setAccount] = React.useState(null);
-    const [chainName, setChainName] = React.useState(null);
+    const [account, setCurrentAccount] = React.useState(null);
+    const [chain, setChain] = React.useState(null);
 
-    React.useEffect(() => {
-        if (!window.ethereum) return;     
-        window.ethereum.on('accountsChanged', accounts => { setAccount(accounts[0]); window.location.reload(); });
-        window.ethereum.on('chainChanged', async (chainId) => { setChainName(await getChainName()); window.location.reload(); });
-        window.ethereum.on('connect', async (connectInfo) => { setChainName(await getChainName()) });
-        window.ethereum.on('disconnect', (error) => { window.location.reload(); });
-    }, []);
-
-    React.useEffect(() => {
-        if (window.ethereum && account === null) window.ethereum.request({ method: 'eth_accounts' }).then(a => {
-            setAccount(a[0]);
-        });
+    const setWallet = async () => {
+        try {
+          const { ethereum } = window;
     
-        if (window.ethereum && !window.web3.version) {
-            window.web3 = new Web3(window.ethereum);
-            window.ethereum.enable();
+          if (!ethereum) {
+            alert("Please, make sure you have metamask!");
+            return;
+          } else {
+            console.log("We have the ethereum object", ethereum);
+          }
+    
+          const accounts = await ethereum.request({ method: "eth_accounts" });
+    
+          if (accounts.length !== 0) {
+            const account = accounts[0];
+            console.log("Found an authorized account:", account);
+            setCurrentAccount(account);
+          } else {
+            console.log("No authorized account found")
+          }
+        } catch (error) {
+          console.log(error);
         }
-    });
+      }
 
-    if (account) return (<><div>Account: {account}</div> <div> Chain: {chainName}</div></>);
+    async function setChainName() {
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
+        const network = await provider.getNetwork()
+        const chainString = network.name + "(" + network.chainId + ")"
+        setChain(chainString);
+    }
+
+    React.useEffect(() => {
+        setWallet();
+        setChainName();
+      }, [])
+
+    if (account) return (<><div>Account: {account}</div><div>on {chain}</div> </>);
     else return(<div>onboarding btn</div>);
 }
+
+
 
 export default Account;
