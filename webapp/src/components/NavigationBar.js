@@ -2,7 +2,7 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
 import { Container, Navbar } from 'react-bootstrap'
-// import Account from './Account'
+import Account from './Account'
 
 function NavigationBar(props) {
     return (
@@ -10,8 +10,8 @@ function NavigationBar(props) {
             <Container>
                 <Navbar.Brand variant="primary"> Frankenstein DeFi DAO</Navbar.Brand>
                 <Navbar.Text> 
-                    {/* <Account/>  */}
-                    0xACC
+                    <Account/>
+                    {/* 0xACC */}
                 </Navbar.Text>
             </Container>
         </Navbar>
