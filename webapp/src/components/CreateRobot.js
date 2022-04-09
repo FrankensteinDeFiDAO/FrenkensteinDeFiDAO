@@ -25,11 +25,7 @@ function CreateRobot() {
     <br />
     <div>
       <Button className="btn-custom-primary" onClick={compile}>Compile</Button>
-    </div>
-    <div>
       <Button className="btn-custom-primary" onClick={deploy}>Deploy</Button>
-    </div>
-    <div>
       <Button className="btn-custom-primary" onClick={propose}>Propose</Button>
     </div>
   </div>)

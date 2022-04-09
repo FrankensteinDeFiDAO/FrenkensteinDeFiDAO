@@ -11,6 +11,7 @@
   --gainsboro-dim2: #DCDCDE11;
   --gainsboro-dim3: #DCDCDE22;
   --violet-ryb-dim: #7D2FB388;
+  --violet-ryb-dim0: #7D2FB311;
   --violet-ryb-dim1: #7D2FB333;
   --violet-ryb-dim2: #7D2FB355;
   --violet-ryb-dim3: #7D2FB366;
@@ -87,6 +88,7 @@ input[type="radio"] {
   margin: .5rem;
   min-width: 6rem;
   min-height: 2.5rem;
+  
 }
 
 .fix-btn {
@@ -141,6 +143,26 @@ input[type="radio"] {
   margin: .5rem;
 }
 
+/* ---------------------- */
+.proposal-show-container {
+  margin: 1rem;
+  width: 100%;
+  align-items: center;
+  display: flex;
+}
+
+.proposal-show {
+  margin: auto;
+  background-color: var(--raisin-black);
+  padding: 1rem;
+  text-align: left;
+  min-width: 20rem;
+  max-width: 50rem;
+  border: 1px solid var(--violet-ryb-dim2);
+  background-color: var(--violet-ryb-dim0);
+  border-radius: 8px;
+}
+
 .proposals-list {
   margin: auto;
   /* max-width: 50rem; */
@@ -149,15 +171,6 @@ input[type="radio"] {
   align-items: center;
   max-width: 50rem;
   justify-content: center;
-}
-
-.proposal-show {
-  background-color: var(--raisin-black);
-  /* text-align: left; */
-  min-width: 20rem;
-  max-width: 40rem;
-  border: 1px solid var(--violet-ryb);
-  border-radius: 8px;
 }
 
 .proposal-item {
@@ -173,7 +186,12 @@ input[type="radio"] {
 }
 
 .proposal-item:hover {
-  background-color: #7D2FB322;
+  background-color: var(--violet-ryb-dim3);
+}
+
+.proposal-item-selected {
+  background-color: var(--violet-ryb-dim2);
+  border: 1px solid var(--violet-ryb-dim3);
 }
 
 .proposal-address {
