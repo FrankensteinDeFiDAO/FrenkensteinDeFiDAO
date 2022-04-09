@@ -5,8 +5,13 @@
   --gainsboro: #DCDCDEff;
   --thistle: #EACDFEff;
 
-  --gainsboro-dim: #DCDCDE55;
+  
+  --gainsboro-dim: #DCDCDE33;
+  --gainsboro-highlight: #DCDCDE55;
+  --gainsboro-dim2: #DCDCDE11;
   --violet-ryb-dim: #7D2FB388;
+
+  --test: yellow;
 }
 
 .App {
@@ -16,6 +21,28 @@
 body {
   background-color: var(--raisin-black)  !important;
   color: var(--gainsboro)  !important;
+}
+
+textarea {
+  min-height: 10rem;
+  min-width: 30rem;
+  border-radius: 10px;
+  background-color: var( --gainsboro-dim2);
+  color: var(--gainsboro-highlight);
+  padding-left: .5rem;
+  padding-right: .5rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--thistle) !important;
+}
+
+.radio-container {
+  margin: 1rem;
+}
+
+input[type="radio"] {
+  margin: .3rem;
 }
 
 .App-logo {
@@ -52,6 +79,16 @@ body {
   color: var(--gainsboro-dim) !important;
 }
 
+.btn {
+  margin: .5rem;
+  min-width: 6rem;
+  min-height: 2.5rem;
+}
+
+.fix-btn {
+  min-width: 10rem !important;
+}
+
 .btn-primary {
   background-color: var(--violet-ryb)  !important;
   border: 1px var(--violet-ryb) !important;
@@ -69,6 +106,23 @@ body {
   border: 1px var(--violet-ryb) !important;
 }
 
+.btn-secondary {
+  background-color: var(--gainsboro-dim)  !important;
+  border: 1px var(--gainsboro-dim) !important;
+}
+.btn-secondary:hover {
+  background-color: var(--gainsboro-highlight) !important; 
+  border: 1px var(--gainsboro-dimb) !important;
+}
+.btn-secondary:active {
+  background-color: var(--gainsboro-highlight) !important;
+  border: 1px var(--gainsboro-dim) !important;
+}
+.btn-secondary:focus {
+  background-color: var(--gainsboro-highlight) !important;
+  border: 1px var(--gainsboro-dim) !important;
+}
+
 .menuItem {
   margin: 1rem !important;
   color: var(--violet-ryb) !important;
@@ -79,6 +133,9 @@ body {
   text-decoration: underline;
 }
 
+.standart-margin {
+  margin: .5rem;
+}
 
 @keyframes App-logo-spin {
   from {

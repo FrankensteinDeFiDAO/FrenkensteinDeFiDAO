@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import './App.css';
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ethers } from 'ethers'
 import Header from './components/Header';
 import { Button, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 
-import AcceptComponent from './components/Accept.js';
+import ExecuteComponent from './components/Execute.js';
 import VoteComponent from './components/Vote.js';
 import CreateManual from './components/CreateManual.js';
 import CreateRobot from './components/CreateRobot.js';
@@ -97,7 +97,7 @@ function App() {
           <br />
             {account ? <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/accept" element={<AcceptComponent />} />
+              <Route path="/execute" element={<ExecuteComponent />} />
               <Route path="/vote" element={<VoteComponent />} />
               <Route path="/manual" element={<CreateManual />} />
               <Route path="/robot" element={<CreateRobot />} />
