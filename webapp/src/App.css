@@ -1,5 +1,21 @@
+:root { 
+  --purple-munsell: #A228B5ff;
+  --violet-ryb: #7D2FB3ff;
+  --raisin-black: #1D1D25ff;
+  --gainsboro: #DCDCDEff;
+  --thistle: #EACDFEff;
+
+  --gainsboro-dim: #DCDCDE55;
+  --violet-ryb-dim: #7D2FB388;
+}
+
 .App {
   text-align: center;
+}
+
+body {
+  background-color: var(--raisin-black)  !important;
+  color: var(--gainsboro)  !important;
 }
 
 .App-logo {
@@ -13,7 +29,7 @@
   }
 }
 
-.App-header {
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -22,27 +38,35 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
+} */
 
 .App-link {
   color: #61dafb;
 }
 
+.navbar-brand {
+  color: var(--purple-munsell) !important;
+}
+
+.navbar-text {
+  color: var(--violet-ryb-dim) !important;
+}
+
 .btn-primary {
-  background-color: darkcyan;
-  border: 1px darkcyan;
+  background-color: var(--violet-ryb)  !important;
+  border: 1px var(--violet-ryb) !important;
 }
 .btn-primary:hover {
-  background-color: cyan;
-  border: 1px darkcyan;
+  background-color: var(--purple-munsell) !important; 
+  border: 1px var(--violet-ryb) !important;
 }
 .btn-primary:active {
-  background-color: cyan;
-  border: 1px darkcyan;
+  background-color: var(--purple-munsell) !important;
+  border: 1px var(--violet-ryb) !important;
 }
 .btn-primary:focus {
-  background-color: cyan;
-  border: 1px darkcyan;
+  background-color: var(--purple-munsell) !important;
+  border: 1px var(--violet-ryb) !important;
 }
 
 @keyframes App-logo-spin {
