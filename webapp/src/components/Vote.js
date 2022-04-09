@@ -98,7 +98,7 @@ function VoteComponent() {
     <div>
       {selectedProposal &&
         <div>
-          <div className="proposal-item">
+          <div className="proposal-show">
             <div className="proposal-line">
               Operation: <span className="proposal-value">{selectedProposal.op.toString()}</span>
             </div>

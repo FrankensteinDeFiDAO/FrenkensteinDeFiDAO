@@ -151,6 +151,15 @@ input[type="radio"] {
   justify-content: center;
 }
 
+.proposal-show {
+  background-color: var(--raisin-black);
+  /* text-align: left; */
+  min-width: 20rem;
+  max-width: 40rem;
+  border: 1px solid var(--violet-ryb);
+  border-radius: 8px;
+}
+
 .proposal-item {
   background-color: #000000FF;
   margin: .5rem;
