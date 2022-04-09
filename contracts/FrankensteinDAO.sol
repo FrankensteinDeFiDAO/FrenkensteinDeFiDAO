@@ -50,24 +50,24 @@ contract FrankensteinDAO {
         proposalId = nextProposalId++;
         proposalIdList.push(proposalId);
         if (0 == op) { // setSwapFee(uint16 _fee)
-            proposalsById[proposalId].op == 0;
+            proposalsById[proposalId].op = 0;
             proposalsById[proposalId].parameters.push(parameters[0]);
             proposalsById[proposalId].deadlineBlock = deadlineBlock;
         } else if (1 == op) { // shiftRange(uint256 _priceShiftFactor)
-            proposalsById[proposalId].op == 1;
+            proposalsById[proposalId].op = 1;
             proposalsById[proposalId].parameters.push(parameters[0]);
             proposalsById[proposalId].deadlineBlock = deadlineBlock;
         } else if (2 == op) { // zoomRange(uint256 _priceZoomFactor)
-            proposalsById[proposalId].op == 2;
+            proposalsById[proposalId].op = 2;
             proposalsById[proposalId].parameters.push(parameters[0]);
             proposalsById[proposalId].deadlineBlock = deadlineBlock;
         } else if (3 == op) { // IRobot
-            proposalsById[proposalId].op == 3;
+            proposalsById[proposalId].op = 3;
             proposalsById[proposalId].parameters.push(parameters[0]); // cycle
             proposalsById[proposalId].parameters.push(parameters[1]); // IRobot (address)
             proposalsById[proposalId].deadlineBlock = deadlineBlock;
         } else if (4 == op) { // IRobot remove
-            proposalsById[proposalId].op == 4;
+            proposalsById[proposalId].op = 4;
             proposalsById[proposalId].parameters.push(parameters[0]); // remove proposalId
             proposalsById[proposalId].deadlineBlock = deadlineBlock;
         }

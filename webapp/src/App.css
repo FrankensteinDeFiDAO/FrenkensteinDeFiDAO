@@ -9,7 +9,11 @@
   --gainsboro-dim: #DCDCDE33;
   --gainsboro-highlight: #DCDCDE55;
   --gainsboro-dim2: #DCDCDE11;
+  --gainsboro-dim3: #DCDCDE22;
   --violet-ryb-dim: #7D2FB388;
+  --violet-ryb-dim1: #7D2FB333;
+  --violet-ryb-dim2: #7D2FB355;
+  --violet-ryb-dim3: #7D2FB366;
 
   --test: yellow;
 }
@@ -135,6 +139,22 @@ input[type="radio"] {
 
 .standart-margin {
   margin: .5rem;
+}
+
+.proposals-list {
+  margin: 2rem;
+  max-width: 30rem;
+}
+
+.proposal-item {
+  background-color: #000000FF;
+  margin: .5rem;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.proposal-item:hover {
+  background-color: #7D2FB322;
 }
 
 @keyframes App-logo-spin {

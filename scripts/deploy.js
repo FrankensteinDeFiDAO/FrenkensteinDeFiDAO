@@ -22,22 +22,34 @@ async function main() {
   const mockFocusPool = await MockFocusPool.deploy();
   await mockFocusPool.deployed();
   console.log("MockFocusPool deployed to:", mockFocusPool.address);
-  await mockFocusPool.mockLiquidity(voter1.address);
-  await mockFocusPool.mockLiquidity(voter2.address);
-  await mockFocusPool.mockLiquidity(voter3.address);
-  await mockFocusPool.mockLiquidity(voter4.address);
-
+  await (await mockFocusPool.mockLiquidity(voter1.address)).wait();
+  await (await mockFocusPool.mockLiquidity(voter2.address)).wait();
+  await (await mockFocusPool.mockLiquidity(voter3.address)).wait();
+  await (await mockFocusPool.mockLiquidity(voter4.address)).wait();
+  
   const FrankensteinDAO = await hre.ethers.getContractFactory("FrankensteinDAO");
   const frankensteinDAO = await FrankensteinDAO.deploy(mockFocusPool.address);
   await frankensteinDAO.deployed();
   console.log("FrankensteinDAO deployed to:", frankensteinDAO.address);
-  await mockFocusPool.setGovernance(frankensteinDAO.address);
+  await (await mockFocusPool.setGovernance(frankensteinDAO.address)).wait();
 
   const MockRobot = await hre.ethers.getContractFactory("MockRobot");
   const mockRobot = await MockRobot.deploy();
   await mockRobot.deployed();
   console.log("MockRobot deployed to:", mockRobot.address);
 
+  console.log("signer: " + voter1.address);
+  // bad
+  // await (await frankensteinDAO.connect(voter1).propose(0, 10000, [5])).wait();
+  // await (await frankensteinDAO.connect(voter1).propose(1, 9000, [6])).wait();
+  // await (await frankensteinDAO.connect(voter1).propose(3, 9000, [7, mockRobot.address])).wait();
+
+  // good
+  // await (await frankensteinDAO.connect(voter1).propose(0, 10000, [11])).wait()
+  // await (await frankensteinDAO.connect(voter1).propose(1, 9100, [12])).wait();
+  // await (await frankensteinDAO.connect(voter1).propose(1, 10000, [13])).wait();
+  // await (await frankensteinDAO.connect(voter1).propose(1, 10000, [14])).wait();
+  // await (await frankensteinDAO.connect(voter1).propose(3, 9200, [15, mockRobot.address])).wait();
  }
 
 // We recommend this pattern to be able to use async/await everywhere
