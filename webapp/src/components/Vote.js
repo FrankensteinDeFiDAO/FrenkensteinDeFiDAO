@@ -8,6 +8,8 @@ import abi from "../utils/FrankensteinDAO.json";
 function VoteComponent() {
   const [proposalCount, setProposalCount] = useState(0);
   const [proposals, setProposals] = useState([]);
+  const [selected, setSelected] = useState(null);
+
 
   const contractAddress = "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707";
   const contractABI = abi.abi;
@@ -18,6 +20,10 @@ function VoteComponent() {
 
   const cancel = async () => {
 
+  }
+
+  const selectProposal = async (item) => {
+    setSelected(item);
   }
 
   const getProposals = async () => {
@@ -39,6 +45,7 @@ function VoteComponent() {
         console.log(proposal);
 
         const parsedProposal = {
+          id: proposalId,
           op: proposal.op,
           p0: proposal.p0,
           p1: proposal.p1,
@@ -72,11 +79,27 @@ function VoteComponent() {
       <div>number of current votes/pool.totalSupply</div>
     </div> */}
 
-    <div style={{maxWidth: "100%", alignContent: "center"}}>
+    <div style={{ maxWidth: "100%", alignContent: "center" }}>
       <div className="proposals-list" >
         {proposals.map((p, index) => {
           return (
-            <div key={index} className="proposal-item">
+            <div key={index} className="proposal-item" style={{textAlign: "center"}}>
+              <div>Proposal {p.id.toString()}</div>
+              <div>
+                {p.p1 != 0x0 
+                  ? <span className="item-robot">Robot</span> 
+                  : <span className="item-manual">Manual</span>}
+                </div>
+              
+            </div>
+          )
+        })}
+      </div>
+    </div>
+
+    <div>
+      {/* 
+      <div key={index} className="proposal-item">
                 <div className="proposal-line">
                   Operation: <span className="proposal-value">{p.op.toString()}</span>
                 </div>
@@ -96,13 +119,7 @@ function VoteComponent() {
                   I voted: <span className="proposal-value">{p.iVoted.toString()}</span>
                 </div>
             </div>
-          )
-        })}
-      </div>
-    </div>
-
-    <div>
-      [list parameters]
+       */}
     </div>
     <br />
     <div>
