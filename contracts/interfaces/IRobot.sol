@@ -10,4 +10,5 @@ interface IRobot {
     function lastCallBlock() external view returns(uint);
     function setCycle(uint cycle) external;
     function execute(IFocusPool) external;
+    function destroy() external;
 }

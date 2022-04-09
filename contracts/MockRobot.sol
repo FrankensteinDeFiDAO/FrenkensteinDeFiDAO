@@ -22,4 +22,8 @@ contract MockRobot is IRobot {
         lastCallBlock = block.number;
         pool.zoomRange(2 * DENOM);
     }
+
+    function destroy() external {
+        selfdestruct(payable(address(0))); // burn
+    }
 }
