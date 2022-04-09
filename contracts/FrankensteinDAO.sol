@@ -7,7 +7,7 @@ import "./interfaces/IRobot.sol";
 import "hardhat/console.sol";
 
 contract FrankensteinDAO {
-    IFocusPool pool;
+    IFocusPool public pool;
 
     uint[] public proposalIdList; // To be able to list them
     mapping (uint => opType) proposalsById;
