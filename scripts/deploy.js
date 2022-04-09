@@ -15,16 +15,23 @@ async function main() {
   // manually to make sure everything is compiled
   // await hre.run('compile');
 
+  const [owner, voter1, voter2, voter3, voter4] = await ethers.getSigners();
+
   // We get the contract to deploy
   const MockFocusPool = await hre.ethers.getContractFactory("MockFocusPool");
   const mockFocusPool = await MockFocusPool.deploy();
   await mockFocusPool.deployed();
   console.log("MockFocusPool deployed to:", mockFocusPool.address);
+  await mockFocusPool.mockLiquidity(voter1.address);
+  await mockFocusPool.mockLiquidity(voter2.address);
+  await mockFocusPool.mockLiquidity(voter3.address);
+  await mockFocusPool.mockLiquidity(voter4.address);
 
   const FrankensteinDAO = await hre.ethers.getContractFactory("FrankensteinDAO");
   const frankensteinDAO = await FrankensteinDAO.deploy(mockFocusPool.address);
   await frankensteinDAO.deployed();
   console.log("FrankensteinDAO deployed to:", frankensteinDAO.address);
+  await mockFocusPool.setGovernance(frankensteinDAO.address);
 
   const MockRobot = await hre.ethers.getContractFactory("MockRobot");
   const mockRobot = await MockRobot.deploy();

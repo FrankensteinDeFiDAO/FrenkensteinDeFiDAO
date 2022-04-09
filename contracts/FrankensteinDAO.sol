@@ -4,6 +4,8 @@ pragma solidity >=0.8.0;
 import "./interfaces/IFocusPool.sol";
 import "./interfaces/IRobot.sol";
 
+import "hardhat/console.sol";
+
 contract FrankensteinDAO {
     IFocusPool pool;
 
@@ -72,7 +74,8 @@ contract FrankensteinDAO {
     }
 
     function vote(uint porposalId, bool voteYes) external {
-        require(0 == proposalsById[porposalId].deadlineBlock, "FrankensteinDAO: NO_SUCH_PROPOSAL");
+        require(0 != proposalsById[porposalId].deadlineBlock, "FrankensteinDAO: NO_SUCH_PROPOSAL");
+        require(pool.balanceOf(msg.sender) > 0, "FrankensteinDAO: NOT_A_MEMBER"); // Must have liquidity in pool
         require(proposalsById[porposalId].deadlineBlock >= block.number, "FrankensteinDAO: TOO_LATE");
         require(proposalsById[porposalId].voted[msg.sender] == 0, "FrankensteinDAO: ALREADY_VOTED");
         proposalsById[porposalId].voted[msg.sender] = pool.balanceOf(msg.sender);
@@ -80,7 +83,7 @@ contract FrankensteinDAO {
     }
 
     function execute(uint porposalId) external { // Anyone can execute a proposal if it is accepted. It should be externally scheduled or incentivized for anyone to call
-        require(0 == proposalsById[porposalId].deadlineBlock, "FrankensteinDAO: NO_SUCH_PROPOSAL");
+        require(0 != proposalsById[porposalId].deadlineBlock, "FrankensteinDAO: NO_SUCH_PROPOSAL");
         require(proposalsById[porposalId].deadlineBlock < block.number, "FrankensteinDAO: TOO_EARLY");
         require(proposalsById[porposalId].yesVotes >= pool.totalSupply() / 2, "FrankensteinDAO: NOT_ELECTED"); // At least half of liquidity should vote in favor
         if (0 == proposalsById[porposalId].op) { // setSwapFee(uint16 _fee)
@@ -104,7 +107,7 @@ contract FrankensteinDAO {
     }
 
     function remove(uint proposalId) private {
-        require(0 == proposalsById[proposalId].deadlineBlock, "FrankensteinDAO: NO_SUCH_PROPOSAL");
+        require(0 != proposalsById[proposalId].deadlineBlock, "FrankensteinDAO: NO_SUCH_PROPOSAL");
         delete(proposalsById[proposalId].parameters);
         // delete(proposalsById[proposalId].voted);
         delete(proposalsById[proposalId]);

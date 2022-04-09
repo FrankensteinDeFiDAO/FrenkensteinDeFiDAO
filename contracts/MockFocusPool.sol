@@ -39,6 +39,10 @@ contract MockFocusPool is IFocusPool, ERC20PresetFixedSupply("Focus Liquidity", 
         governance = msg.sender;
     }
 
+    function mockLiquidity(address lp) external {
+        _mint(lp, DENOM);
+    }
+
     function getReserves() public view returns (uint112 _actualReserve0, uint112 _actualReserve1, uint112 _virtualReserve0, uint112 _virtualReserve1, uint32 _blockTimestampLast) {
         _virtualReserve0 = virtualReserve0;
         _virtualReserve1 = virtualReserve1;
@@ -67,5 +71,10 @@ contract MockFocusPool is IFocusPool, ERC20PresetFixedSupply("Focus Liquidity", 
     function setSwapFee(uint16 _fee) external {
         require(msg.sender == governance, "Focus: FORBIDDEN");
         swapFee = _fee;
+    }
+
+    function setGovernance(address newGovernance) external {
+        require(msg.sender == governance, "Focus: FORBIDDEN");
+        governance = newGovernance;
     }
 }

@@ -19,4 +19,6 @@ interface IFocusPool is IERC20 {
 
     function shiftRange(uint256 _priceShiftFactor) external;
     function zoomRange(uint256 _priceZoomFactor) external;
+
+    function setGovernance(address) external;
 }
