@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import './App.css';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { ethers } from 'ethers'
 import Header from './components/Header';
-import { Button } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 
 import AcceptComponent from './components/Accept.js';
 import VoteComponent from './components/Vote.js';
+import CreateManual from './components/CreateManual.js';
+import CreateRobot from './components/CreateRobot.js';
 import Home from './components/Home.js';
 
 function App() {
@@ -17,22 +19,22 @@ function App() {
 
   const connectWallet = async () => {
     try {
-        const { ethereum } = window;
+      const { ethereum } = window;
 
-        if (!ethereum) {
-            alert("Please, get MetaMask -> https://metamask.io/");
-            return;
-        }
+      if (!ethereum) {
+        alert("Please, get MetaMask -> https://metamask.io/");
+        return;
+      }
 
-        const accounts = await ethereum.request({ method: "eth_requestAccounts" });
+      const accounts = await ethereum.request({ method: "eth_requestAccounts" });
 
-        console.log("Connected", accounts[0]);
-        setAccount(accounts[0]);
+      console.log("Connected", accounts[0]);
+      setAccount(accounts[0]);
     } catch (error) {
-        console.log(error)
-        setAccount(null);
+      console.log(error)
+      setAccount(null);
     }
-}
+  }
 
   const setWallet = async () => {
     try {
@@ -43,9 +45,9 @@ function App() {
       } else {
         console.log("We have the ethereum object", ethereum);
       }
-  
+
       const accounts = await ethereum.request({ method: "eth_accounts" });
-  
+
       if (accounts.length !== 0) {
         setAccount(accounts[0]);
       } else {
@@ -56,7 +58,7 @@ function App() {
       setAccount(null);
     }
   }
-  
+
   async function setChainName() {
     const { ethereum } = window;
     if (ethereum) {
@@ -86,19 +88,24 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter>
-        <header className="App-header">
-        <Header account={account} setAccount={setAccount} chain={chain} connectWallet={connectWallet} />
-        </header>
-
-        {account ? <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/accept" element={<AcceptComponent />} />
-          <Route path="/vote" element={<VoteComponent />} />
-        </Routes>
-        : <><Button onClick={connectWallet}>Connect MetaMask</Button></> }
+      <Container>
+        <BrowserRouter>
+          <header className="App-header">
+            <Header account={account} setAccount={setAccount} chain={chain} connectWallet={connectWallet} />
+          </header>
+          <br />
+          <br />
+            {account ? <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/accept" element={<AcceptComponent />} />
+              <Route path="/vote" element={<VoteComponent />} />
+              <Route path="/manual" element={<CreateManual />} />
+              <Route path="/robot" element={<CreateRobot />} />
+            </Routes>
+              : <><Button onClick={connectWallet}>Connect MetaMask</Button></>}
         
       </BrowserRouter>
+      </Container>
     </div>
   );
 }

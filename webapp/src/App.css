@@ -45,11 +45,11 @@ body {
 }
 
 .navbar-brand {
-  color: var(--purple-munsell) !important;
+  color: var(--violet-ryb-dim) !important;
 }
 
 .navbar-text {
-  color: var(--violet-ryb-dim) !important;
+  color: var(--gainsboro-dim) !important;
 }
 
 .btn-primary {
@@ -68,6 +68,17 @@ body {
   background-color: var(--purple-munsell) !important;
   border: 1px var(--violet-ryb) !important;
 }
+
+.menuItem {
+  margin: 1rem !important;
+  color: var(--violet-ryb) !important;
+  text-decoration: none;
+}
+.menuItem:hover {
+  color: var(--purple-munsell) !important;
+  text-decoration: underline;
+}
+
 
 @keyframes App-logo-spin {
   from {
