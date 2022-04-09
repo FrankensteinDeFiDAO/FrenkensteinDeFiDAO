@@ -97,37 +97,42 @@ function VoteComponent() {
 
     <div>
       {selectedProposal &&
-        <div className="proposal-item">
-          <div className="proposal-line">
-            Operation: <span className="proposal-value">{selectedProposal.op.toString()}</span>
+        <div>
+          <div className="proposal-item">
+            <div className="proposal-line">
+              Operation: <span className="proposal-value">{selectedProposal.op.toString()}</span>
+            </div>
+            <div className="proposal-line">
+              p0: <span className="proposal-value">{selectedProposal.p0.toString()}</span>
+            </div>
+            <div className="proposal-line">
+              {selectedProposal.p1 != 0x0 ? <>Robot : <span className="proposal-address">{selectedProposal.p1.toHexString()}</span></> : <>&nbsp;</>}
+            </div>
+            <div className="proposal-line">
+              Yes votes: <span className="proposal-value">{selectedProposal.yesVotes.toString()}</span>
+            </div>
+            <div className="proposal-line">
+              Deadline block : <span className="proposal-value">{selectedProposal.deadlineBlock.toString()}</span>
+            </div>
+            <div className="proposal-line">
+              I voted: <span className="proposal-value">{selectedProposal.iVoted.toString()}</span>
+            </div>
           </div>
-          <div className="proposal-line">
-            p0: <span className="proposal-value">{selectedProposal.p0.toString()}</span>
-          </div>
-          <div className="proposal-line">
-            {selectedProposal.p1 != 0x0 ? <>Robot : <span className="proposal-address">{selectedProposal.p1.toHexString()}</span></> : <>&nbsp;</>}
-          </div>
-          <div className="proposal-line">
-            Yes votes: <span className="proposal-value">{selectedProposal.yesVotes.toString()}</span>
-          </div>
-          <div className="proposal-line">
-            Deadline block : <span className="proposal-value">{selectedProposal.deadlineBlock.toString()}</span>
-          </div>
-          <div className="proposal-line">
-            I voted: <span className="proposal-value">{selectedProposal.iVoted.toString()}</span>
+
+          <br />
+          <h5>Your vote</h5>
+          <div>
+            <span className="radio-container">
+              <input type="radio" value="yes" name="voting-option" /> Yes
+            </span>
+            <span className="radio-container">
+              <input type="radio" value="no" name="voting-option" /> No
+            </span>
           </div>
         </div>
       }
     </div>
-    <br />
-    <div>
-      <span className="radio-container">
-        <input type="radio" value="yes" name="voting-option" /> Yes
-      </span>
-      <span className="radio-container">
-        <input type="radio" value="no" name="voting-option" /> No
-      </span>
-    </div>
+
 
     <br />
 
