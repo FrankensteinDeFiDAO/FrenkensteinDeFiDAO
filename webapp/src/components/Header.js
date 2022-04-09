@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Navbar } from 'react-bootstrap';
 import { Link, Routes, Route } from "react-router-dom";
+import monster from '../utils/monster.png';
 import '../App.css';
 
 function Header(props) {
@@ -8,7 +9,10 @@ function Header(props) {
         <>
                 <Navbar variant="dark" className="header">
                     <Container>
-                        <Navbar.Brand variant="primary" as={Link} to="/">&#128126; Frankenstein DeFi DAO</Navbar.Brand>
+                        <Navbar.Brand variant="primary" as={Link} to="/">
+                        <img src={monster} alt='Frankenstein DeFi DAO' style={{width: "40px"}} />
+                            Frankenstein DeFi DAO
+                            </Navbar.Brand>
                         <Navbar.Text>
                             {
                                 props.account

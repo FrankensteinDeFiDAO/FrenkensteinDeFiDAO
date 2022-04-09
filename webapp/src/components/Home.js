@@ -1,10 +1,14 @@
 import { Link } from "react-router-dom";
 import { Button } from 'react-bootstrap';
+import monster from '../utils/monster.png';
 import React from "react";
 import '../App.css';
 
 function Home(props) {
     return (<>
+        <img src={monster} alt='Frankenstein DeFi DAO' style={{width: "100px"}} />
+        <br />
+        <br />
         <div>
             <Link to="/robot">
                 <Button className="fix-btn">

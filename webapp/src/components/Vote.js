@@ -12,7 +12,6 @@ function VoteComponent() {
   const [voteChoice, setChoice] = useState(null);
   const [totalSupply, setTotalSupply] = useState(null);
 
-
   const contractAddress = "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707";
   const contractABI = abi.abi;
 
@@ -132,7 +131,7 @@ function VoteComponent() {
       <div className="proposals-list" >
         {proposals.map((p, index) => {
           return (
-            <div key={index} className={"proposal-item " + (selectedProposal == p && "proposal-item-selected")} style={{ textAlign: "center" }} onClick={() => selectProposal(p)}>
+            <div key={index} className={"proposal-item " + (selectedProposal === p && "proposal-item-selected")} style={{ textAlign: "center" }} onClick={() => selectProposal(p)}>
               <div>Proposal {p.id.toString()}</div>
               <div>
                 {p.p1.toString() !== '0'
@@ -151,7 +150,18 @@ function VoteComponent() {
           <div className="proposal-show-container">
             <div className="proposal-show">
               <div className="proposal-line">
-                Operation: <span className="proposal-value">{selectedProposal.op.toString()}</span>
+                Operation:&nbsp; 
+                <span className="proposal-value">
+                  {
+                    selectedProposal.op.toString() === '0' 
+                    ? 'Set Swap Free (' + selectedProposal.op.toString() + ')'
+                    : selectedProposal.op.toString() === '1' 
+                      ? 'Shift Range (' + selectedProposal.op.toString() + ')'
+                      : selectedProposal.op.toString() === '2' 
+                        ? 'Zoom Range (' + selectedProposal.op.toString() + ')'
+                        : 'Robot Strategy (' + selectedProposal.op.toString() + ')'
+                  }
+                </span>
               </div>
 
               {/* If op==0, 1, 2, 4, you should display 1 param (p0) only in decimal 
@@ -161,10 +171,23 @@ function VoteComponent() {
               {/* op ==1 => fee, op==1 priceShiftFactor, op==2 priceZoomFactor */}
 
               <div className="proposal-line">
-                p0: <span className="proposal-value">{selectedProposal.p0.toString()}</span>
+                <span>
+                  {
+                    selectedProposal.op.toString() === '0' 
+                      ? 'Swap Fee'
+                      : selectedProposal.op.toString() === '1' 
+                        ? 'Shift Factor'
+                        : selectedProposal.op.toString() === '2' 
+                          ? 'Zoom Factor'
+                          : 'Parameter'
+                  }
+
+                </span>
+                <span>:&nbsp;</span>
+                <span className="proposal-value">{selectedProposal.p0.toString()}</span>
               </div>
               <div className="proposal-line">
-                {selectedProposal.p1 != 0x0 ? <>Robot address: <span className="proposal-address">{selectedProposal.p1.toHexString()}</span></> : <>&nbsp;</>}
+                {selectedProposal.p1.toString() !== '0' ? <>Robot address: <span className="proposal-address">{selectedProposal.p1.toHexString()}</span></> : <>&nbsp;</>}
               </div>
               <div className="proposal-line">
                 Yes votes: <span className="proposal-value">{selectedProposal.yesVotes.toString()}</span>
