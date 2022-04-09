@@ -11,7 +11,18 @@ function VoteComponent() {
 
   return (<div>
 
-    <h4>Your liquidity</h4>
+    <h4>Vote on proposal</h4>
+
+    <br />
+    
+    <div>
+      ... listing ... (clickable)
+      <div>show function, parameter</div>
+      <div>parameter</div>
+      <div>deadline</div>
+      <div>number of current votes/pool.totalSupply</div>
+    </div>
+
     <br />
     <div>
       ...

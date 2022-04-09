@@ -6,7 +6,7 @@ function CreateManual() {
   }
 
   return (<div>
-    <h4>Create manual strategy</h4>
+    <h4>Create manual intervention proposal</h4>
 
     <br />
     <div>

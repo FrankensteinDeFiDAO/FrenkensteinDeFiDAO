@@ -14,7 +14,7 @@ function CreateRobot() {
   }
 
   return (<div>
-    <h4>Deploy robot strategy</h4>
+    <h4>Propose a robot strategy</h4>
     <br />
 
     <textarea placeholder='Paste robot source'>
