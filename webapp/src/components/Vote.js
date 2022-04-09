@@ -22,8 +22,9 @@ function VoteComponent() {
 
   }
 
-  const selectProposal = async (item) => {
-    setSelected(item);
+  const selectProposal = async (proposal) => {
+    console.log("selecting " + proposal.id.toString());
+    setSelected(proposal);
   }
 
   const getProposals = async () => {
@@ -42,8 +43,6 @@ function VoteComponent() {
       for (var i = 0; i < pCount; i++) {
         const proposalId = await contract.getProposalId(i);
         const proposal = await contract.getProposal(proposalId);
-        console.log(proposal);
-
         const parsedProposal = {
           id: proposalId,
           op: proposal.op,
@@ -57,7 +56,6 @@ function VoteComponent() {
         parsedProposals.push(parsedProposal);
       }
       setProposals(parsedProposals);
-
     }
     catch (error) {
       console.log('errr: ' + error);
@@ -83,7 +81,7 @@ function VoteComponent() {
       <div className="proposals-list" >
         {proposals.map((p, index) => {
           return (
-            <div key={index} className="proposal-item" style={{textAlign: "center"}}>
+            <div key={index} className="proposal-item" style={{textAlign: "center"}} onClick={() => selectProposal(p)}>
               <div>Proposal {p.id.toString()}</div>
               <div>
                 {p.p1 != 0x0 
