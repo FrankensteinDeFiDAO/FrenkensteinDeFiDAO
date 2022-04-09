@@ -8,7 +8,7 @@ import abi from "../utils/FrankensteinDAO.json";
 function VoteComponent() {
   const [proposalCount, setProposalCount] = useState(0);
   const [proposals, setProposals] = useState([]);
-  const [selected, setSelected] = useState(null);
+  const [selectedProposal, setSelected] = useState(null);
 
 
   const contractAddress = "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707";
@@ -81,14 +81,14 @@ function VoteComponent() {
       <div className="proposals-list" >
         {proposals.map((p, index) => {
           return (
-            <div key={index} className="proposal-item" style={{textAlign: "center"}} onClick={() => selectProposal(p)}>
+            <div key={index} className="proposal-item" style={{ textAlign: "center" }} onClick={() => selectProposal(p)}>
               <div>Proposal {p.id.toString()}</div>
               <div>
-                {p.p1 != 0x0 
-                  ? <span className="item-robot">Robot</span> 
+                {p.p1 != 0x0
+                  ? <span className="item-robot">Robot</span>
                   : <span className="item-manual">Manual</span>}
-                </div>
-              
+              </div>
+
             </div>
           )
         })}
@@ -96,28 +96,28 @@ function VoteComponent() {
     </div>
 
     <div>
-      {/* 
-      <div key={index} className="proposal-item">
-                <div className="proposal-line">
-                  Operation: <span className="proposal-value">{p.op.toString()}</span>
-                </div>
-                <div className="proposal-line">
-                  p0: <span className="proposal-value">{p.p0.toString()}</span>
-                </div>
-                <div className="proposal-line">
-                  {p.p1 != 0x0 ? <>Robot : <span className="proposal-address">{p.p1.toHexString()}</span></> : <>&nbsp;</>}
-                </div>
-                <div className="proposal-line">
-                  Yes votes: <span className="proposal-value">{p.yesVotes.toString()}</span>
-                </div>
-                <div className="proposal-line">
-                  Deadline block : <span className="proposal-value">{p.deadlineBlock.toString()}</span>
-                </div>
-                <div className="proposal-line">
-                  I voted: <span className="proposal-value">{p.iVoted.toString()}</span>
-                </div>
-            </div>
-       */}
+      {selectedProposal &&
+        <div className="proposal-item">
+          <div className="proposal-line">
+            Operation: <span className="proposal-value">{selectedProposal.op.toString()}</span>
+          </div>
+          <div className="proposal-line">
+            p0: <span className="proposal-value">{selectedProposal.p0.toString()}</span>
+          </div>
+          <div className="proposal-line">
+            {selectedProposal.p1 != 0x0 ? <>Robot : <span className="proposal-address">{selectedProposal.p1.toHexString()}</span></> : <>&nbsp;</>}
+          </div>
+          <div className="proposal-line">
+            Yes votes: <span className="proposal-value">{selectedProposal.yesVotes.toString()}</span>
+          </div>
+          <div className="proposal-line">
+            Deadline block : <span className="proposal-value">{selectedProposal.deadlineBlock.toString()}</span>
+          </div>
+          <div className="proposal-line">
+            I voted: <span className="proposal-value">{selectedProposal.iVoted.toString()}</span>
+          </div>
+        </div>
+      }
     </div>
     <br />
     <div>
