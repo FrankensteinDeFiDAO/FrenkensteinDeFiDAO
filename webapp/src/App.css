@@ -142,19 +142,46 @@ input[type="radio"] {
 }
 
 .proposals-list {
-  margin: 2rem;
-  max-width: 30rem;
+  margin: auto;
+  /* max-width: 50rem; */
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  max-width: 50rem;
+  justify-content: center;
 }
 
 .proposal-item {
   background-color: #000000FF;
   margin: .5rem;
+  padding: 1rem;
+  padding-bottom: .5rem;
+  padding-top: .2rem;
   cursor: pointer;
   border-radius: 8px;
+  text-align: left;
+  white-space:nowrap;
 }
 
 .proposal-item:hover {
   background-color: #7D2FB322;
+}
+
+.proposal-address {
+  color: darkcyan;
+  font-size: small;
+}
+
+.proposal-line {
+  /* background-color: #61dafb55; */
+  width: 100%;
+}
+
+.proposal-value {
+  color: darkcyan;
+  text-align: right;
+  width: 100%;
+  /* background-color: orangered; */
 }
 
 @keyframes App-logo-spin {
