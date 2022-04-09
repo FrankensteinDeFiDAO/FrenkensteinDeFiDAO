@@ -8,8 +8,7 @@ const { ecsign } = require('ethereumjs-util')
 
 const { SignerWithAddress } = require('@nomiclabs/hardhat-ethers/signers')
 
-describe("    const FrankensteinDAO = await ethers.getContractFactory("FrankensteinDAO");
-", () => {
+describe("FrankensteinDAO", () => {
   let wallet;
   let voter;
   let nonVoter;
