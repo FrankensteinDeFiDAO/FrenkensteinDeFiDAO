@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 
 import abi from "../utils/FrankensteinDAO.json";
-import poolAbi from "../utils/IFocusPool.json";
 
 function CreateManual() {
   const [op, setOp] = useState(null);
