@@ -31,7 +31,7 @@ textarea {
   min-width: 30rem;
   border-radius: 10px;
   background-color: var( --gainsboro-dim2);
-  color: var(--gainsboro-highlight);
+  color: var(--gainsboro);
   padding-left: .5rem;
   padding-right: .5rem;
 }
@@ -46,6 +46,16 @@ h1, h2, h3, h4, h5, h6 {
 
 input[type="radio"] {
   margin: .3rem;
+}
+
+input[type="text"] {
+  background-color: var( --gainsboro-dim2);
+  color: var(--gainsboro);
+  padding-left: .5rem;
+  padding-right: .5rem;
+  border-radius: 4px;
+  height: 2.5rem;
+  text-align: center;
 }
 
 .App-logo {

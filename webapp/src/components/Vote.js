@@ -122,7 +122,7 @@ function VoteComponent() {
     setChoice(null);
 
     if (tx != null) {
-      alert("Ok!");
+      alert("Voted!");
       window.location.reload(false);
     }
   }
@@ -244,7 +244,6 @@ function VoteComponent() {
     </div>
 
     <br />
-
 
     <div>
       <Button className="btn-primary" onClick={vote} disabled={!checkCanVote() || !deadlineNotPassed}>Vote</Button>

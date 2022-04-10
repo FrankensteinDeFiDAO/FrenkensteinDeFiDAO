@@ -9,7 +9,6 @@ import abi from "../utils/FrankensteinDAO.json";
 import poolAbi from "../utils/IFocusPool.json";
 
 function ExecuteComponent() {
-  const [proposalCount, setProposalCount] = useState(0);
   const [proposals, setProposals] = useState([]);
   const [selectedProposal, setSelected] = useState(null);
   const [totalSupply, setTotalSupply] = useState(null);
@@ -51,7 +50,6 @@ function ExecuteComponent() {
       setTotalSupply(new BigNumber(total.toString()));
 
       const pCount = (await contract.numProposals()).toString();
-      setProposalCount(pCount);
 
       let parsedProposals = [];
 
