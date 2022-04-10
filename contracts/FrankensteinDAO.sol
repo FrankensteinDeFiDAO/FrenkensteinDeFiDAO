@@ -3,15 +3,18 @@ pragma solidity >=0.8.0;
 
 import "./interfaces/IFocusPool.sol";
 import "./interfaces/IRobot.sol";
+import "./interfaces/IFrankensteinDAO.sol";
 
 import "hardhat/console.sol";
 
-contract FrankensteinDAO {
+contract FrankensteinDAO is IFrankensteinDAO {
     IFocusPool public pool;
 
     uint[] public proposalIdList; // To be able to list them
     mapping (uint => opType) proposalsById;
     uint nextProposalId; // = 0 automatically
+
+    IRobot authorizedRobot;
 
     struct opType {
         uint8 op;
@@ -66,6 +69,8 @@ contract FrankensteinDAO {
             proposalsById[proposalId].parameters.push(parameters[0]); // cycle
             proposalsById[proposalId].parameters.push(parameters[1]); // IRobot (address)
             proposalsById[proposalId].deadlineBlock = deadlineBlock;
+            IRobot robot = IRobot(address(uint160(proposalsById[proposalId].parameters[1])));
+            robot.init();
         } else if (4 == op) { // IRobot remove
             proposalsById[proposalId].op = 4;
             proposalsById[proposalId].parameters.push(parameters[0]); // remove proposalId
@@ -73,37 +78,54 @@ contract FrankensteinDAO {
         }
     }
 
-    function vote(uint porposalId, bool voteYes) external {
-        require(0 != proposalsById[porposalId].deadlineBlock, "FrankensteinDAO: NO_SUCH_PROPOSAL");
+    function vote(uint proposalId, bool voteYes) external {
+        require(0 != proposalsById[proposalId].deadlineBlock, "FrankensteinDAO: NO_SUCH_PROPOSAL");
         require(pool.balanceOf(msg.sender) > 0, "FrankensteinDAO: NOT_A_MEMBER"); // Must have liquidity in pool
-        require(proposalsById[porposalId].deadlineBlock >= block.number, "FrankensteinDAO: TOO_LATE");
-        require(proposalsById[porposalId].voted[msg.sender] == 0, "FrankensteinDAO: ALREADY_VOTED");
-        proposalsById[porposalId].voted[msg.sender] = pool.balanceOf(msg.sender);
-        if (voteYes) proposalsById[porposalId].yesVotes += pool.balanceOf(msg.sender); // Amount of liquidity; we are assuming that liquidity is not removed after voting (for the hackathon simplicity)
+        require(proposalsById[proposalId].deadlineBlock >= block.number, "FrankensteinDAO: TOO_LATE");
+        require(proposalsById[proposalId].voted[msg.sender] == 0, "FrankensteinDAO: ALREADY_VOTED");
+        proposalsById[proposalId].voted[msg.sender] = pool.balanceOf(msg.sender);
+        if (voteYes) proposalsById[proposalId].yesVotes += pool.balanceOf(msg.sender); // Amount of liquidity; we are assuming that liquidity is not removed after voting (for the hackathon simplicity)
     }
 
-    function execute(uint porposalId) external { // Anyone can execute a proposal if it is accepted. It should be externally scheduled or incentivized for anyone to call
-        require(0 != proposalsById[porposalId].deadlineBlock, "FrankensteinDAO: NO_SUCH_PROPOSAL");
-        require(proposalsById[porposalId].deadlineBlock < block.number, "FrankensteinDAO: TOO_EARLY");
-        require(proposalsById[porposalId].yesVotes >= pool.totalSupply() / 2, "FrankensteinDAO: NOT_ELECTED"); // At least half of liquidity should vote in favor
-        if (0 == proposalsById[porposalId].op) { // setSwapFee(uint16 _fee)
-            pool.setSwapFee(uint16(proposalsById[porposalId].parameters[0]));
-            remove(porposalId);
-        } else if (1 == proposalsById[porposalId].op) { // shiftRange(uint256 _priceShiftFactor)
-            pool.shiftRange(proposalsById[porposalId].parameters[0]);
-            remove(porposalId);
-        } else if (2 == proposalsById[porposalId].op) { // zoomRange(uint256 _priceZoomFactor)
-            pool.zoomRange(proposalsById[porposalId].parameters[0]);
-            remove(porposalId);
-        } else if (3 == proposalsById[porposalId].op) { // IRobot - repeated execution until removed
-            IRobot robot = IRobot(address(uint160(proposalsById[porposalId].parameters[1])));
-            if (0 == robot.cycle()) robot.setCycle(proposalsById[porposalId].parameters[0]); // Initialize
-            if (block.number > robot.lastCallBlock() + robot.cycle()) robot.execute(pool); // Execute
-        } else if (4 == proposalsById[porposalId].op) { // IRobot - remove
-            IRobot robot = IRobot(address(uint160(proposalsById[porposalId].parameters[1])));
+    function execute(uint proposalId) external { // Anyone can execute a proposal if it is accepted. It should be externally scheduled or incentivized for anyone to call
+        require(0 != proposalsById[proposalId].deadlineBlock, "FrankensteinDAO: NO_SUCH_PROPOSAL");
+        require(proposalsById[proposalId].deadlineBlock < block.number, "FrankensteinDAO: TOO_EARLY");
+        require(proposalsById[proposalId].yesVotes >= pool.totalSupply() / 2, "FrankensteinDAO: NOT_ELECTED"); // At least half of liquidity should vote in favor
+        if (0 == proposalsById[proposalId].op) { // setSwapFee(uint16 _fee)
+            pool.setSwapFee(uint16(proposalsById[proposalId].parameters[0]));
+            remove(proposalId);
+        } else if (1 == proposalsById[proposalId].op) { // shiftRange(uint256 _priceShiftFactor)
+            pool.shiftRange(proposalsById[proposalId].parameters[0]);
+            remove(proposalId);
+        } else if (2 == proposalsById[proposalId].op) { // zoomRange(uint256 _priceZoomFactor)
+            pool.zoomRange(proposalsById[proposalId].parameters[0]);
+            remove(proposalId);
+        } else if (3 == proposalsById[proposalId].op) { // IRobot - repeated execution until removed
+            IRobot robot = IRobot(address(uint160(proposalsById[proposalId].parameters[1])));
+            authorizedRobot = robot;
+            if (0 == robot.cycle()) robot.setCycle(proposalsById[proposalId].parameters[0]); // Initialize
+            if (block.number > robot.lastCallBlock() + robot.cycle()) robot.execute(); // Execute
+            authorizedRobot = IRobot(address(0));
+        } else if (4 == proposalsById[proposalId].op) { // IRobot - remove
+            IRobot robot = IRobot(address(uint160(proposalsById[proposalId].parameters[1])));
             robot.destroy();
-            remove(porposalId);
+            remove(proposalId);
         }
+    }
+
+    function setPoolSwapFee(uint16 _fee) external {
+        require(authorizedRobot == IRobot(msg.sender), "FrankensteinDAO: UNAUTHORIZED_ROBOT");
+        pool.setSwapFee((_fee));
+    }
+
+    function shiftPoolRange(uint256 _priceShiftFactor) external {
+        require(authorizedRobot == IRobot(msg.sender), "FrankensteinDAO: UNAUTHORIZED_ROBOT");
+        pool.shiftRange((_priceShiftFactor));
+    }
+
+    function zoomPoolRange(uint256 _priceZoomFactor) external {
+        require(authorizedRobot == IRobot(msg.sender), "FrankensteinDAO: UNAUTHORIZED_ROBOT");
+        pool.zoomRange((_priceZoomFactor));
     }
 
     function remove(uint proposalId) private {

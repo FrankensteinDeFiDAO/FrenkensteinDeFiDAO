@@ -38,28 +38,42 @@ interface IRobot {
     function cycle() external view returns(uint);
     function lastCallBlock() external view returns(uint);
     function setCycle(uint cycle) external;
-    function execute(IFocusPool) external;
+    function execute() external;
     function destroy() external;
 }
 
-contract MockRobot is IRobot {
+interface IFrankensteinDAO {
+    function setPoolSwapFee(uint16 _fee) external;
+    function shiftPoolRange(uint256 _priceShiftFactor) external;
+    function zoomPoolRange(uint256 _priceZoomFactor) external ;
+}
+
+contract MockRobotFlattened is IRobot {
     uint256 public constant DENOM = 10**18;
     uint public lastCallBlock;
     uint public cycle;
+    IFrankensteinDAO frankensteinDAO;
+
+    function init() external {
+        frankensteinDAO = IFrankensteinDAO(msg.sender);
+    }
 
     // To turn off this robot, call: setCycle(type(uint).max)
     function setCycle(uint _cycle) public {
+        require(IFrankensteinDAO(msg.sender) == frankensteinDAO, "MockRobot: FORBIDDEN");
         require(_cycle > 0, "MockRobot: TOO_FREQUENT");
         cycle = _cycle;
     }
     
-    function execute(IFocusPool pool) external {
+    function execute() external {
+        require(IFrankensteinDAO(msg.sender) == frankensteinDAO, "MockRobot: FORBIDDEN");
         require(block.number > lastCallBlock + cycle, "MockRobot: TOO_SOON");
         lastCallBlock = block.number;
-        pool.zoomRange(2 * DENOM);
+        frankensteinDAO.zoomPoolRange(2 * DENOM);
     }
 
     function destroy() external {
+        require(IFrankensteinDAO(msg.sender) == frankensteinDAO, "MockRobot: FORBIDDEN");
         selfdestruct(payable(address(0))); // burn
     }
 }
