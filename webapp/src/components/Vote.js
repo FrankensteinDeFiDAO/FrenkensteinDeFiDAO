@@ -50,9 +50,7 @@ function VoteComponent() {
       const contract = new ethers.Contract(contractAddress, contractABI, signer);
 
       const pCount = (await contract.numProposals()).toString();
-      console.log('proposal count: ' + pCount);
       setProposalCount(pCount);
-      console.log(proposalCount + " proposals");
 
       let parsedProposals = [];
 
@@ -86,7 +84,6 @@ function VoteComponent() {
       const contract = new ethers.Contract(contractAddress, contractABI, signer);
 
       const poolAddress = (await contract.pool());
-      console.log("pool: " + poolAddress);
       const poolContract = new ethers.Contract(poolAddress, poolABI, signer);
       const total = await poolContract.totalSupply();
 
@@ -113,7 +110,7 @@ function VoteComponent() {
     setChoice(null);
 
     if (tx != null) {
-      alert("voted?");
+      alert("Voted!");
     }
   }
 
@@ -124,7 +121,7 @@ function VoteComponent() {
   }, [])
 
   return (<div>
-    <h4>Vote on proposal</h4>
+    <h3>Vote on proposal</h3>
     <div style={{ maxWidth: "100%", alignContent: "center" }}>
       <div className="proposals-list" >
         {proposals.map((p, index) => {
@@ -169,8 +166,6 @@ function VoteComponent() {
 
               {/*  swap fee: n / 100  -- %   > 30 == 0.3% */}
               {/* others 18 decimals */}
-              {/* op==4 => p0 == proposal id  */}
-
 
               <div className="proposal-line">
                 <span>
@@ -181,7 +176,11 @@ function VoteComponent() {
                         ? 'Shift Factor'
                         : selectedProposal.op.toString() === '2'
                           ? 'Zoom Factor'
-                          : 'Parameter'
+                          : selectedProposal.op.toString() === '3'
+                            ? 'Cycle'
+                            : selectedProposal.op.toString() === '4'
+                              ? 'Proposal ID'
+                              : 'Unknown'
                   }
 
                 </span>
@@ -203,7 +202,6 @@ function VoteComponent() {
                 <span className="proposal-value">
                   {
                     selectedProposal.iVoted.toString() !== '0'
-                      // <>&nbsp; {selectedProposal.iVoted.toString()} / {totalSupply} <span>{selectedProposal.iVoted.dividedBy(totalSupply)}</span></>
                       ? <span>&nbsp; {selectedProposal.iVoted.toString()} / {totalSupply.toString()} ({new BigNumber(selectedProposal.iVoted.div(totalSupply)).multipliedBy(100).toString()}%)</span>
                       : <>&nbsp; {selectedProposal.iVoted.toString()} / {totalSupply.toString()}</>
                   }

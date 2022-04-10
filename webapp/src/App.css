@@ -196,7 +196,7 @@ input[type="radio"] {
 
 .proposal-address {
   color: darkcyan;
-  font-size: small;
+  font-size: smaller;
 }
 
 .proposal-line {
@@ -209,6 +209,10 @@ input[type="radio"] {
   text-align: right;
   width: 100%;
   /* background-color: orangered; */
+}
+
+.no-proposals {
+  margin: 3rem;
 }
 
 .item-robot {
