@@ -7,25 +7,28 @@ import '../App.css';
 function Header(props) {
     return (
         <>
-                <Navbar variant="dark" className="header">
-                    <Container>
-                        <Navbar.Brand variant="primary" as={Link} to="/">
-                        <img src={monster} alt='Frankenstein DeFi DAO' style={{width: "40px"}} />
-                            Frankenstein DeFi DAO
-                            </Navbar.Brand>
-                        <Navbar.Text>
-                            {
-                                props.account
-                                    ? <><div>{props.account}</div> </>
-                                    : <div>Not Connected</div>
-                            }
-                        </Navbar.Text>
-                    </Container>
-                </Navbar>
+            <Navbar variant="dark" className="header">
+                <Container>
+                    <Navbar.Brand variant="primary" as={Link} to="/">
+                        <img src={monster} alt='Frankenstein DeFi DAO' style={{ width: "40px" }} />
+                        Frankenstein DeFi DAO
+                    </Navbar.Brand>
+                    <Navbar.Text>
+                        {
+                            props.account
+                                ? <><div>{props.account}</div> </>
+                                : <div>Not Connected</div>
+                        }
+                    </Navbar.Text>
+                </Container>
+            </Navbar>
 
-                <br />
+            <br />
 
             <Routes>
+                <Route path="/" element={props.account &&
+                    <></>
+                } />
                 <Route path="/execute" element={props.account &&
                     <>
                         <Link to={"/robot"} className="menuItem">Create Robot</Link >

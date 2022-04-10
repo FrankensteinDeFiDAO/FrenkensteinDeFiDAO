@@ -1,9 +1,13 @@
 import { ethers } from "ethers";
+
 // import { getContractAddress } from "ethers/lib/utils";
 import React, { useEffect, useState } from "react";
 import { Button } from 'react-bootstrap';
 
+import BigNumber from "bignumber.js";
+
 import abi from "../utils/FrankensteinDAO.json";
+import poolAbi from "../utils/IFocusPool.json";
 
 function VoteComponent() {
   const [proposalCount, setProposalCount] = useState(0);
@@ -14,6 +18,7 @@ function VoteComponent() {
 
   const contractAddress = "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707";
   const contractABI = abi.abi;
+  const poolABI = poolAbi.abi;
 
   const cancel = async () => {
     setSelected(null);
@@ -25,7 +30,7 @@ function VoteComponent() {
   }
 
   const setVote = (event) => {
-    if(event.target.value === 'true') {
+    if (event.target.value === 'true') {
       setChoice(true);
     }
     else {
@@ -61,7 +66,7 @@ function VoteComponent() {
           p1: proposal.p1,
           yesVotes: proposal.yesVotes,
           deadlineBlock: proposal.deadlineBlock,
-          iVoted: proposal.iVoted
+          iVoted: new BigNumber(proposal.iVoted.toString())
         }
 
         parsedProposals.push(parsedProposal);
@@ -80,10 +85,12 @@ function VoteComponent() {
       const signer = provider.getSigner();
       const contract = new ethers.Contract(contractAddress, contractABI, signer);
 
-      const supply = (await contract.pool.totalSupply());
-      console.log('total supply: ' + supply);
-      setTotalSupply(supply);
-      console.log(totalSupply + " total supply");
+      const poolAddress = (await contract.pool());
+      console.log("pool: " + poolAddress);
+      const poolContract = new ethers.Contract(poolAddress, poolABI, signer);
+      const total = await poolContract.totalSupply();
+
+      setTotalSupply(new BigNumber(total.toString()));
     }
     catch (error) {
       console.log('errr: ' + error);
@@ -105,28 +112,19 @@ function VoteComponent() {
     setSelected(null);
     setChoice(null);
 
-    if(tx != null) {
+    if (tx != null) {
       alert("voted?");
     }
   }
 
   useEffect(() => {
-    getProposals();
     getTotalSupply();
+    getProposals();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (<div>
-
     <h4>Vote on proposal</h4>
-    {/* <div>
-      ... selectable listing ... (clickable)
-      <div>show function, parameter</div>
-      <div>parameter</div>
-      <div>deadline</div>
-      <div>number of current votes/pool.totalSupply</div>
-    </div> */}
-
     <div style={{ maxWidth: "100%", alignContent: "center" }}>
       <div className="proposals-list" >
         {proposals.map((p, index) => {
@@ -150,34 +148,38 @@ function VoteComponent() {
           <div className="proposal-show-container">
             <div className="proposal-show">
               <div className="proposal-line">
-                Operation:&nbsp; 
+                Operation:&nbsp;
                 <span className="proposal-value">
                   {
-                    selectedProposal.op.toString() === '0' 
-                    ? 'Set Swap Free (' + selectedProposal.op.toString() + ')'
-                    : selectedProposal.op.toString() === '1' 
-                      ? 'Shift Range (' + selectedProposal.op.toString() + ')'
-                      : selectedProposal.op.toString() === '2' 
-                        ? 'Zoom Range (' + selectedProposal.op.toString() + ')'
-                        : 'Robot Strategy (' + selectedProposal.op.toString() + ')'
+                    selectedProposal.op.toString() === '0'
+                      ? 'Set Swap Free (' + selectedProposal.op.toString() + ')'
+                      : selectedProposal.op.toString() === '1'
+                        ? 'Shift Range (' + selectedProposal.op.toString() + ')'
+                        : selectedProposal.op.toString() === '2'
+                          ? 'Zoom Range (' + selectedProposal.op.toString() + ')'
+                          : selectedProposal.op.toString() === '3'
+                            ? 'Robot Strategy (' + selectedProposal.op.toString() + ')'
+                            : selectedProposal.op.toString() === '4'
+                              ? 'Remove Robot (' + selectedProposal.op.toString() + ')'
+                              : 'Unknown Operation'
                   }
                 </span>
               </div>
 
-              {/* If op==0, 1, 2, 4, you should display 1 param (p0) only in decimal 
-              If op==3 display p0 in decimal and p1 in hex as 0x… */}
 
-              {/*  @! */}
-              {/* op ==1 => fee, op==1 priceShiftFactor, op==2 priceZoomFactor */}
+              {/*  swap fee: n / 100  -- %   > 30 == 0.3% */}
+              {/* others 18 decimals */}
+              {/* op==4 => p0 == proposal id  */}
+
 
               <div className="proposal-line">
                 <span>
                   {
-                    selectedProposal.op.toString() === '0' 
+                    selectedProposal.op.toString() === '0'
                       ? 'Swap Fee'
-                      : selectedProposal.op.toString() === '1' 
+                      : selectedProposal.op.toString() === '1'
                         ? 'Shift Factor'
-                        : selectedProposal.op.toString() === '2' 
+                        : selectedProposal.op.toString() === '2'
                           ? 'Zoom Factor'
                           : 'Parameter'
                   }
@@ -185,6 +187,7 @@ function VoteComponent() {
                 </span>
                 <span>:&nbsp;</span>
                 <span className="proposal-value">{selectedProposal.p0.toString()}</span>
+                {/* <span>{JSON.stringify(selectedProposal.p0)}</span> */}
               </div>
               <div className="proposal-line">
                 {selectedProposal.p1.toString() !== '0' ? <>Robot address: <span className="proposal-address">{selectedProposal.p1.toHexString()}</span></> : <>&nbsp;</>}
@@ -196,7 +199,15 @@ function VoteComponent() {
                 Deadline block : <span className="proposal-value">{selectedProposal.deadlineBlock.toString()}</span>
               </div>
               <div className="proposal-line">
-                I voted: <span className="proposal-value">{selectedProposal.iVoted.toString()}</span>
+                I voted:
+                <span className="proposal-value">
+                  {
+                    selectedProposal.iVoted.toString() !== '0'
+                      // <>&nbsp; {selectedProposal.iVoted.toString()} / {totalSupply} <span>{selectedProposal.iVoted.dividedBy(totalSupply)}</span></>
+                      ? <span>&nbsp; {selectedProposal.iVoted.toString()} / {totalSupply.toString()} ({new BigNumber(selectedProposal.iVoted.div(totalSupply)).multipliedBy(100).toString()}%)</span>
+                      : <>&nbsp; {selectedProposal.iVoted.toString()} / {totalSupply.toString()}</>
+                  }
+                </span>
               </div>
             </div>
           </div>
