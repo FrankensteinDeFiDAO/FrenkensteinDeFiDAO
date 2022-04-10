@@ -10,6 +10,18 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
   }
 });
 
+// This is a sample Hardhat task. To learn how to create your own go to
+// https://hardhat.org/guides/create-task.html
+task("mine", "Mines blocks")
+  .addParam("blocks", "Number of vlocks to mine")
+  .setAction(async (taskArgs, hre) => {
+  console.log("Start block: ", await ethers.provider.send("eth_blockNumber"));
+  console.log(taskArgs.blocks);
+  const b = parseInt(taskArgs.blocks);
+  for (let i=0; i<b; i++) await ethers.provider.send("evm_mine"); // mines 5 blocks
+  console.log("End block: ", await ethers.provider.send("eth_blockNumber"));
+});
+
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
 
