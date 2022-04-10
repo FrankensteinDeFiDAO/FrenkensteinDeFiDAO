@@ -8,7 +8,7 @@ import '../App.css';
 
 function Home(props) {
     return (<>
-        <img src={monster} alt='Frankenstein DeFi DAO' style={{width: "100px"}} />
+        <img src={monster} alt='Frankenstein DeFi DAO' style={{width: "100px"}} className="monster-img"/>
         <br />
         <br />
         <div>

@@ -112,7 +112,7 @@ contract FrankensteinDAO {
         // delete(proposalsById[proposalId].voted);
         delete(proposalsById[proposalId]);
         for (uint i=0; i<proposalIdList.length; i++) if (proposalIdList[i] == proposalId) { // remove from list
-            if (i == proposalIdList.length-1) proposalIdList[i] = proposalIdList[proposalIdList.length-1]; // swap with last
+            if (i != proposalIdList.length-1) proposalIdList[i] = proposalIdList[proposalIdList.length-1]; // swap with last
             proposalIdList.pop();
             break;
         }

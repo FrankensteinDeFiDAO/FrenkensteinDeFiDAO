@@ -4,19 +4,17 @@
   --raisin-black: #1D1D25ff;
   --gainsboro: #DCDCDEff;
   --thistle: #EACDFEff;
-
   
   --gainsboro-dim: #DCDCDE33;
   --gainsboro-highlight: #DCDCDE55;
   --gainsboro-dim2: #DCDCDE11;
   --gainsboro-dim3: #DCDCDE22;
+  --gainsboro-dim4: #DCDCDE66;
   --violet-ryb-dim: #7D2FB388;
   --violet-ryb-dim0: #7D2FB311;
   --violet-ryb-dim1: #7D2FB333;
   --violet-ryb-dim2: #7D2FB355;
   --violet-ryb-dim3: #7D2FB366;
-
-  --test: yellow;
 }
 
 .App {
@@ -77,7 +75,12 @@ input[type="radio"] {
 }
 
 .navbar-brand {
-  color: var(--violet-ryb-dim) !important;
+  color: var(--violet-ryb) !important;
+  opacity: 0.8;
+}
+
+.navbar-brand:hover {
+  opacity: 1;
 }
 
 .navbar-text {
@@ -88,7 +91,6 @@ input[type="radio"] {
   margin: .5rem;
   min-width: 6rem;
   min-height: 2.5rem;
-  
 }
 
 .fix-btn {
@@ -101,7 +103,8 @@ input[type="radio"] {
 }
 .btn-primary:hover {
   background-color: var(--purple-munsell) !important; 
-  border: 1px var(--violet-ryb) !important;
+  border: 1px solid var(--purple-munsell) !important;
+  font-weight: bold;
 }
 .btn-primary:active {
   background-color: var(--purple-munsell) !important;
@@ -165,7 +168,6 @@ input[type="radio"] {
 
 .proposals-list {
   margin: auto;
-  /* max-width: 50rem; */
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -183,6 +185,7 @@ input[type="radio"] {
   border-radius: 8px;
   text-align: left;
   white-space:nowrap;
+  opacity: 0.8;
 }
 
 .proposal-item:hover {
@@ -192,6 +195,8 @@ input[type="radio"] {
 .proposal-item-selected {
   background-color: var(--violet-ryb-dim2);
   border: 1px solid var(--violet-ryb-dim3);
+  font-weight: bold;
+  opacity: 1;
 }
 
 .proposal-address {
@@ -200,7 +205,6 @@ input[type="radio"] {
 }
 
 .proposal-line {
-  /* background-color: #61dafb55; */
   width: 100%;
 }
 
@@ -208,7 +212,6 @@ input[type="radio"] {
   color: darkcyan;
   text-align: right;
   width: 100%;
-  /* background-color: orangered; */
 }
 
 .no-proposals {
@@ -225,6 +228,18 @@ input[type="radio"] {
 
 .deadline-passed-message {
   color: #FF2222CC;
+}
+
+.airdrop-smalltext {
+  color: var(--gainsboro-dim4);
+}
+
+.monster-img {
+  opacity: 0.8;
+}
+
+.monster-img:hover {
+  opacity: 1;
 }
 
 @keyframes App-logo-spin {

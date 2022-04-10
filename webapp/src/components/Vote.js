@@ -61,6 +61,7 @@ function VoteComponent() {
       const contract = new ethers.Contract(contractAddress, contractABI, signer);
 
       const pCount = (await contract.numProposals()).toString();
+      console.log('count: ' + pCount);
       setProposalCount(pCount);
 
       let parsedProposals = [];
@@ -121,7 +122,8 @@ function VoteComponent() {
     setChoice(null);
 
     if (tx != null) {
-      alert("Voted!");
+      alert("Ok!");
+      window.location.reload(false);
     }
   }
 
@@ -242,7 +244,6 @@ function VoteComponent() {
     </div>
 
     <br />
-
 
 
     <div>

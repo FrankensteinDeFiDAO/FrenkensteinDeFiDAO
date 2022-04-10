@@ -23,7 +23,7 @@ function ExecuteComponent() {
   }
 
   const complies = async (proposal, supply) => {
-    // listing  ELECTED proposal, currentBlock gt deadline block 
+    // listing  ELECTED proposal 
     // <div>for a robot: block.number gt robot.lastCallBlock() + robot.cycle()</div>
 
     const { ethereum } = window;
@@ -85,20 +85,17 @@ function ExecuteComponent() {
     const signer = provider.getSigner();
     const contract = new ethers.Contract(contractAddress, contractABI, signer);
 
-
     // @! accept
-    // const tx = await contract.vote(selectedProposal.id, voteChoice);
-    // const result = await tx.wait();
+    const tx = await contract.execute(selectedProposal.id);
+    const result = await tx.wait();
 
-    // console.log(tx);
-    // console.log(result);
+    console.log(tx);
+    console.log(result);
 
-    // setSelected(null);
-    // setChoice(null);
-
-    // if (tx != null) {
-    //   alert("voted?");
-    // }
+     if (tx != null) {
+       alert("Congratulations, you get 0.01 ETH!");
+       window.location.reload(false);
+     }
   }
 
   useEffect(() => {
@@ -221,6 +218,9 @@ function ExecuteComponent() {
 
     <br />
     <h5>Get the Airdrop (0.01 ETH)</h5>
+    <div style={{display: "flex", margin:"auto"}}>
+    <div className="airdrop-smalltext" style={{maxWidth:"40rem", margin: "auto"}}>We are giving 0.01 ETH to anyone to execute an elected proposal. In Anchor protocol on Terra this is called "Airdrop" in a popup.</div>
+    </div>
 
   </div>)
 }
