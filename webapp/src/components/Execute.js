@@ -28,10 +28,8 @@ function ExecuteComponent() {
 
     const { ethereum } = window;
     const provider = new ethers.providers.Web3Provider(ethereum);
-
-    const blockBig = await provider.getBlockNumber(); //await ethers.provider.getBlockNumber();
+    const blockBig = await provider.getBlockNumber();
     const currentBlock = new BigNumber(blockBig);
-    console.log(currentBlock.toString());
 
     const result = proposal.yesVotes.isGreaterThan(supply.div(2))
       && currentBlock.isGreaterThan(proposal.deadlineBlock);

@@ -15,6 +15,7 @@ function VoteComponent() {
   const [selectedProposal, setSelected] = useState(null);
   const [voteChoice, setChoice] = useState(null);
   const [totalSupply, setTotalSupply] = useState(null);
+  const [deadlineNotPassed, setDeadlineNotPassed] = useState(true);
 
   const contractAddress = "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707";
   const contractABI = abi.abi;
@@ -27,6 +28,16 @@ function VoteComponent() {
 
   const selectProposal = async (proposal) => {
     setSelected(proposal);
+
+    const { ethereum } = window;
+    const provider = new ethers.providers.Web3Provider(ethereum);
+    const blockBig = await provider.getBlockNumber();
+    const currentBlock = new BigNumber(blockBig);
+
+    console.log(currentBlock.toString() + " " + proposal.deadlineBlock);
+
+    const notPassed = proposal.deadlineBlock.isGreaterThan(currentBlock);
+    setDeadlineNotPassed(notPassed);
   }
 
   const setVote = (event) => {
@@ -63,7 +74,7 @@ function VoteComponent() {
           p0: proposal.p0,
           p1: proposal.p1,
           yesVotes: proposal.yesVotes,
-          deadlineBlock: proposal.deadlineBlock,
+          deadlineBlock: new BigNumber(proposal.deadlineBlock.toString()),
           iVoted: new BigNumber(proposal.iVoted.toString())
         }
 
@@ -211,23 +222,31 @@ function VoteComponent() {
           </div>
 
           <br />
-          <h5>Your vote</h5>
-          <div onChange={(e) => setVote(e)}>
-            <span className="radio-container">
-              <input type="radio" value="true" name="voting-option" /> Yes
-            </span>
-            <span className="radio-container">
-              <input type="radio" value="false" name="voting-option" /> No
-            </span>
+
+          <div>
+            {deadlineNotPassed
+              ? <><h5>Your vote</h5>
+                <div onChange={(e) => setVote(e)}>
+                  <span className="radio-container">
+                    <input type="radio" value="true" name="voting-option" /> Yes
+                  </span>
+                  <span className="radio-container">
+                    <input type="radio" value="false" name="voting-option" /> No
+                  </span>
+                </div></>
+              : <span className="deadline-passed-message">Deadline already passed!</span>}
           </div>
+
         </div>
       }
     </div>
 
     <br />
 
+
+
     <div>
-      <Button className="btn-primary" onClick={vote} disabled={!checkCanVote()}>Vote</Button>
+      <Button className="btn-primary" onClick={vote} disabled={!checkCanVote() || !deadlineNotPassed}>Vote</Button>
       <Button className="btn-secondary" onClick={cancel} disabled={!checkCanVote()}>Cancel</Button>
     </div>
 

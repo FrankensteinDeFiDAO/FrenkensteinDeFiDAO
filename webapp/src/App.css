@@ -223,6 +223,10 @@ input[type="radio"] {
   color: var(--thistle);
 }
 
+.deadline-passed-message {
+  color: #FF2222CC;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
