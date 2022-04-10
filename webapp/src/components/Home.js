@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Button } from 'react-bootstrap';
+import { Button, Container, Row, Col } from 'react-bootstrap';
 import monster from '../utils/monster.png';
 import React from "react";
 import '../App.css';
@@ -8,7 +8,49 @@ import '../App.css';
 
 function Home(props) {
     return (<>
-        <img src={monster} alt='Frankenstein DeFi DAO' style={{width: "100px"}} className="monster-img"/>
+
+        <Container fluid style={{maxWidth:"40rem"}}>
+            <Row>
+                <Col><img src={monster} alt='Frankenstein DeFi DAO' style={{ width: "220px", marginTop:"2rem" }} className="monster-img" /></Col>
+                <Col>
+                    <div>
+
+                        <Link to="/manual">
+                            <Button className="fix-btn">
+                                Create Manual
+                            </Button>
+                        </Link>
+
+                        <br />
+
+                        <Link to="/robot">
+                            <Button className="fix-btn">
+                                Create Robot
+                            </Button>
+                        </Link>
+
+                        <br />
+                        <br />
+
+
+                        <Link to="/vote">
+                            <Button className="fix-btn">
+                                Vote
+                            </Button>
+                        </Link>
+
+                        <br />
+
+                        <Link to="/execute">
+                            <Button className="fix-btn">
+                                Execute
+                            </Button>
+                        </Link>
+                    </div></Col>
+            </Row>
+        </Container>
+
+        {/* <img src={monster} alt='Frankenstein DeFi DAO' style={{width: "100px"}} className="monster-img"/>
         <br />
         <br />
         <div>
@@ -43,7 +85,7 @@ function Home(props) {
                     Execute
                 </Button>
             </Link>
-        </div>
+        </div> */}
     </>);
 }
 

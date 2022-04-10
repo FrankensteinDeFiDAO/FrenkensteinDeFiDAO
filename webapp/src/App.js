@@ -94,7 +94,6 @@ function App() {
             <Header account={account} setAccount={setAccount} chain={chain} connectWallet={connectWallet} />
           </header>
           <br />
-          <br />
             {account ? <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/execute" element={<ExecuteComponent />} />

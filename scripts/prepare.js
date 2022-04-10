@@ -45,14 +45,15 @@ async function main() {
   // await (await frankensteinDAO.connect(voter1).propose(3, 9000, [7, mockRobot.address])).wait();
 
   // good
-  await (await frankensteinDAO.connect(voter1).propose(0, 100, [11])).wait()
-  await (await frankensteinDAO.connect(voter1).propose(1, 91, [12])).wait();
-  await (await frankensteinDAO.connect(voter1).propose(1, 100, [13])).wait();
-  await (await frankensteinDAO.connect(voter1).propose(1, 100, [14])).wait();
-  await (await frankensteinDAO.connect(voter1).propose(3, 92, [15, mockRobot.address])).wait();
-  await (await frankensteinDAO.connect(voter1).propose(1, 200, [16])).wait();
-  await (await frankensteinDAO.connect(voter1).propose(1, 300, [17])).wait();
-  await (await frankensteinDAO.connect(voter1).propose(1, 300, [17])).wait();
+  await (await frankensteinDAO.connect(voter1).propose(1, 80, [20])).wait();
+  await (await frankensteinDAO.connect(voter1).propose(2, 220, [12])).wait();
+  await (await frankensteinDAO.connect(voter1).propose(3, 120, [15, mockRobot.address])).wait();
+  await (await frankensteinDAO.connect(voter1).propose(0, 90, [11])).wait();
+//   await (await frankensteinDAO.connect(voter1).propose(1, 100, [13])).wait();
+//   await (await frankensteinDAO.connect(voter1).propose(1, 100, [14])).wait();
+//   await (await frankensteinDAO.connect(voter1).propose(1, 200, [16])).wait();
+//   await (await frankensteinDAO.connect(voter1).propose(1, 300, [17])).wait();
+//   await (await frankensteinDAO.connect(voter1).propose(1, 300, [17])).wait();
  }
 
 // We recommend this pattern to be able to use async/await everywhere

@@ -9,6 +9,10 @@ import BigNumber from "bignumber.js";
 import abi from "../utils/FrankensteinDAO.json";
 import poolAbi from "../utils/IFocusPool.json";
 
+import consensus from '../utils/consensus.png';
+
+
+
 function VoteComponent() {
   const [proposalCount, setProposalCount] = useState(0);
   const [proposals, setProposals] = useState([]);
@@ -134,7 +138,8 @@ function VoteComponent() {
   }, [])
 
   return (<div>
-    <h3>Vote on proposal</h3>
+    <h3>Vote on proposal </h3>
+    <img src={consensus} alt='Deploy Robot' style={{ width: "160px", margin: "1rem" }} />
     <div style={{ maxWidth: "100%", alignContent: "center" }}>
       <div className="proposals-list" >
         {proposals.map((p, index) => {

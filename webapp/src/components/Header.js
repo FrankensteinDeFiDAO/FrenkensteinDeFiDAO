@@ -10,7 +10,7 @@ function Header(props) {
             <Navbar variant="dark" className="header">
                 <Container>
                     <Navbar.Brand variant="primary" as={Link} to="/">
-                        <img src={monster} alt='Frankenstein DeFi DAO' style={{ width: "40px" }} />
+                        <img src={monster} alt='Frankenstein DeFi DAO' style={{ width: "50px" }} />
                         Frankenstein DeFi DAO
                     </Navbar.Brand>
                     <Navbar.Text>

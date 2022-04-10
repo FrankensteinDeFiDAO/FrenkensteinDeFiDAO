@@ -8,6 +8,9 @@ import BigNumber from "bignumber.js";
 import abi from "../utils/FrankensteinDAO.json";
 import poolAbi from "../utils/IFocusPool.json";
 
+import peace from '../utils/peace.png';
+import executeimg from '../utils/executeimg.png';
+
 function ExecuteComponent() {
   const [proposals, setProposals] = useState([]);
   const [selectedProposal, setSelected] = useState(null);
@@ -102,11 +105,10 @@ function ExecuteComponent() {
   }, [])
 
   return (<div>
-
     <h3>Execute</h3>
-
-    <div style={{ maxWidth: "100%", alignContent: "center" }}>
-      <div className="proposals-list" >
+    <img src={executeimg} alt='Deploy Robot' style={{ width: "100px", marginTop:"1rem", marginBottom:"0" }} />
+    <div style={{ maxWidth: "100%", alignContent: "center"}}>
+      <div className="proposals-list">
         <>
           {proposals.map((p, index) => {
             return (
@@ -130,7 +132,6 @@ function ExecuteComponent() {
                 <Link to={"/robot"} className="menuItem">Create Robot</Link >
                 <Link to={"/manual"} className="menuItem">Create Manual</Link >
               </div>
-
             </div>
           }
         </>
@@ -215,7 +216,7 @@ function ExecuteComponent() {
     </div>
 
     <br />
-    <h5>Get the Airdrop (0.01 ETH)</h5>
+    <h5><img src={peace} alt='Vote' style={{ width: "80px" }} /> Get the Airdrop (0.01 ETH)</h5>
     <div style={{display: "flex", margin:"auto"}}>
     <div className="airdrop-smalltext" style={{maxWidth:"40rem", margin: "auto"}}>We are giving 0.01 ETH to anyone to execute an elected proposal. In Anchor protocol on Terra this is called "Airdrop" in a popup.</div>
     </div>

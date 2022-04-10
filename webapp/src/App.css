@@ -1,262 +1,270 @@
 :root { 
-  --purple-munsell: #A228B5ff;
-  --violet-ryb: #7D2FB3ff;
-  --raisin-black: #1D1D25ff;
-  --gainsboro: #DCDCDEff;
-  --thistle: #EACDFEff;
+    --purple-munsell: #A228B5ff;
+    --violet-ryb: #7D2FB3ff;
+    --raisin-black: #1D1D25ff;
+    --gainsboro: #DCDCDEff;
+    --thistle: #EACDFEff;
+    
+    --gainsboro-dim: #DCDCDE33;
+    --gainsboro-highlight: #DCDCDE55;
+    --gainsboro-dim2: #DCDCDE11;
+    --gainsboro-dim3: #DCDCDE22;
+    --gainsboro-dim4: #DCDCDE66;
+    --violet-ryb-dim: #7D2FB388;
+    --violet-ryb-dim0: #7D2FB311;
+    --violet-ryb-dim1: #7D2FB333;
+    --violet-ryb-dim2: #7D2FB355;
+    --violet-ryb-dim3: #7D2FB366;
+  }
   
-  --gainsboro-dim: #DCDCDE33;
-  --gainsboro-highlight: #DCDCDE55;
-  --gainsboro-dim2: #DCDCDE11;
-  --gainsboro-dim3: #DCDCDE22;
-  --gainsboro-dim4: #DCDCDE66;
-  --violet-ryb-dim: #7D2FB388;
-  --violet-ryb-dim0: #7D2FB311;
-  --violet-ryb-dim1: #7D2FB333;
-  --violet-ryb-dim2: #7D2FB355;
-  --violet-ryb-dim3: #7D2FB366;
-}
-
-.App {
-  text-align: center;
-}
-
-body {
-  background-color: var(--raisin-black)  !important;
-  color: var(--gainsboro)  !important;
-}
-
-textarea {
-  min-height: 10rem;
-  min-width: 30rem;
-  border-radius: 10px;
-  background-color: var( --gainsboro-dim2);
-  color: var(--gainsboro);
-  padding-left: .5rem;
-  padding-right: .5rem;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  color: var(--thistle) !important;
-}
-
-.radio-container {
-  margin: 1rem;
-}
-
-input[type="radio"] {
-  margin: .3rem;
-}
-
-input[type="text"] {
-  background-color: var( --gainsboro-dim2);
-  color: var(--gainsboro);
-  padding-left: .5rem;
-  padding-right: .5rem;
-  border-radius: 4px;
-  height: 2.5rem;
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
+  .App {
+    text-align: center;
+  }
+  
+  body {
+    background-color: var(--raisin-black)  !important;
+    color: var(--gainsboro)  !important;
+  }
+  
+  textarea {
+    min-height: 10rem;
+    min-width: 30rem;
+    border-radius: 10px;
+    background-color: var( --gainsboro-dim2);
+    color: var(--gainsboro);
+    padding-left: .5rem;
+    padding-right: .5rem;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--thistle) !important;
+  }
+  
+  .radio-container {
+    margin: 1rem;
+  }
+  
+  input[type="radio"] {
+    margin: .3rem;
+  }
+  
+  input[type="text"] {
+    background-color: var( --gainsboro-dim2);
+    color: var(--gainsboro);
+    padding-left: .5rem;
+    padding-right: .5rem;
+    border-radius: 4px;
+    height: 2.5rem;
+    text-align: center;
+  }
+  
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    height: 40vmin;
+    pointer-events: none;
   }
-}
-
-/* .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-} */
-
-.App-link {
-  color: #61dafb;
-}
-
-.navbar-brand {
-  color: var(--violet-ryb) !important;
-  opacity: 0.8;
-}
-
-.navbar-brand:hover {
-  opacity: 1;
-}
-
-.navbar-text {
-  color: var(--gainsboro-dim) !important;
-}
-
-.btn {
-  margin: .5rem;
-  min-width: 6rem;
-  min-height: 2.5rem;
-}
-
-.fix-btn {
-  min-width: 10rem !important;
-}
-
-.btn-primary {
-  background-color: var(--violet-ryb)  !important;
-  border: 1px var(--violet-ryb) !important;
-}
-.btn-primary:hover {
-  background-color: var(--purple-munsell) !important; 
-  border: 1px solid var(--purple-munsell) !important;
-  font-weight: bold;
-}
-.btn-primary:active {
-  background-color: var(--purple-munsell) !important;
-  border: 1px var(--violet-ryb) !important;
-}
-.btn-primary:focus {
-  background-color: var(--purple-munsell) !important;
-  border: 1px var(--violet-ryb) !important;
-}
-
-.btn-secondary {
-  background-color: var(--gainsboro-dim)  !important;
-  border: 1px var(--gainsboro-dim) !important;
-}
-.btn-secondary:hover {
-  background-color: var(--gainsboro-highlight) !important; 
-  border: 1px var(--gainsboro-dimb) !important;
-}
-.btn-secondary:active {
-  background-color: var(--gainsboro-highlight) !important;
-  border: 1px var(--gainsboro-dim) !important;
-}
-.btn-secondary:focus {
-  background-color: var(--gainsboro-highlight) !important;
-  border: 1px var(--gainsboro-dim) !important;
-}
-
-.menuItem {
-  margin: 1rem !important;
-  color: var(--violet-ryb) !important;
-  text-decoration: none;
-}
-.menuItem:hover {
-  color: var(--purple-munsell) !important;
-  text-decoration: underline;
-}
-
-.standart-margin {
-  margin: .5rem;
-}
-
-/* ---------------------- */
-.proposal-show-container {
-  margin: 1rem;
-  width: 100%;
-  align-items: center;
-  display: flex;
-}
-
-.proposal-show {
-  margin: auto;
-  background-color: var(--raisin-black);
-  padding: 1rem;
-  text-align: left;
-  min-width: 20rem;
-  max-width: 50rem;
-  border: 1px solid var(--violet-ryb-dim2);
-  background-color: var(--violet-ryb-dim0);
-  border-radius: 8px;
-}
-
-.proposals-list {
-  margin: auto;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  max-width: 50rem;
-  justify-content: center;
-}
-
-.proposal-item {
-  background-color: #000000FF;
-  margin: .5rem;
-  padding: 1rem;
-  padding-bottom: .5rem;
-  padding-top: .2rem;
-  cursor: pointer;
-  border-radius: 8px;
-  text-align: left;
-  white-space:nowrap;
-  opacity: 0.8;
-}
-
-.proposal-item:hover {
-  background-color: var(--violet-ryb-dim3);
-}
-
-.proposal-item-selected {
-  background-color: var(--violet-ryb-dim2);
-  border: 1px solid var(--violet-ryb-dim3);
-  font-weight: bold;
-  opacity: 1;
-}
-
-.proposal-address {
-  color: darkcyan;
-  font-size: smaller;
-}
-
-.proposal-line {
-  width: 100%;
-}
-
-.proposal-value {
-  color: darkcyan;
-  text-align: right;
-  width: 100%;
-}
-
-.no-proposals {
-  margin: 3rem;
-}
-
-.item-robot {
-  color: var(--violet-ryb);
-}
-
-.item-manual {
-  color: var(--thistle);
-}
-
-.deadline-passed-message {
-  color: #FF2222CC;
-}
-
-.airdrop-smalltext {
-  color: var(--gainsboro-dim4);
-}
-
-.monster-img {
-  opacity: 0.8;
-}
-
-.monster-img:hover {
-  opacity: 1;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
   }
-  to {
-    transform: rotate(360deg);
+  
+  /* .App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  } */
+  
+  .App-link {
+    color: #61dafb;
   }
-}
+  
+  .navbar-brand {
+    color: var(--violet-ryb) !important;
+    opacity: 0.8;
+  }
+  
+  .navbar-brand:hover {
+    opacity: 1;
+  }
+  
+  .navbar-text {
+    color: var(--gainsboro-dim) !important;
+  }
+  
+  .btn {
+    margin: .5rem;
+    min-width: 6rem;
+    min-height: 2.5rem;
+  }
+  
+  .fix-btn {
+    min-width: 10rem !important;
+  }
+  
+  .btn-primary {
+    background-color: var(--violet-ryb)  !important;
+    border: 1px var(--violet-ryb) !important;
+  }
+  .btn-primary:hover {
+    background-color: var(--purple-munsell) !important; 
+    border: 1px solid var(--purple-munsell) !important;
+    font-weight: bold;
+  }
+  .btn-primary:active {
+    background-color: var(--purple-munsell) !important;
+    border: 1px var(--violet-ryb) !important;
+  }
+  .btn-primary:focus {
+    background-color: var(--purple-munsell) !important;
+    border: 1px var(--violet-ryb) !important;
+  }
+  
+  .btn-secondary {
+    background-color: var(--gainsboro-dim)  !important;
+    border: 1px var(--gainsboro-dim) !important;
+  }
+  .btn-secondary:hover {
+    background-color: var(--gainsboro-highlight) !important; 
+    border: 1px var(--gainsboro-dimb) !important;
+  }
+  .btn-secondary:active {
+    background-color: var(--gainsboro-highlight) !important;
+    border: 1px var(--gainsboro-dim) !important;
+  }
+  .btn-secondary:focus {
+    background-color: var(--gainsboro-highlight) !important;
+    border: 1px var(--gainsboro-dim) !important;
+  }
+  
+  .menuItem {
+    margin: 1rem !important;
+    color: var(--violet-ryb) !important;
+    text-decoration: none;
+  }
+  .menuItem:hover {
+    color: var(--purple-munsell) !important;
+    text-decoration: underline;
+  }
+  
+  .standart-margin {
+    margin: .5rem;
+  }
+  
+  /* ---------------------- */
+  .proposal-show-container {
+    margin: 1rem;
+    width: 100%;
+    align-items: center;
+    display: flex;
+  }
+  
+  .proposal-show {
+    margin: auto;
+    background-color: var(--raisin-black);
+    padding: 1rem;
+    text-align: left;
+    min-width: 20rem;
+    max-width: 50rem;
+    border: 1px solid var(--violet-ryb-dim2);
+    background-color: var(--violet-ryb-dim0);
+    border-radius: 8px;
+  }
+  
+  .proposals-list {
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    max-width: 50rem;
+    justify-content: center;
+  }
+  
+  .proposal-item {
+    background-color: #000000FF;
+    margin: .5rem;
+    padding: 1rem;
+    padding-bottom: .5rem;
+    padding-top: .2rem;
+    cursor: pointer;
+    border-radius: 8px;
+    text-align: left;
+    white-space:nowrap;
+    opacity: 0.8;
+  }
+  
+  .proposal-item:hover {
+    background-color: var(--violet-ryb-dim3);
+  }
+  
+  .proposal-item-selected {
+    background-color: var(--violet-ryb-dim2);
+    border: 1px solid var(--violet-ryb-dim3);
+    font-weight: bold;
+    opacity: 1;
+  }
+  
+  .proposal-address {
+    color: darkcyan;
+    font-size: smaller;
+  }
+  
+  .proposal-line {
+    width: 100%;
+  }
+  
+  .proposal-value {
+    color: darkcyan;
+    text-align: right;
+    width: 100%;
+  }
+  
+  .no-proposals {
+    margin: 3rem;
+  }
+  
+  .item-robot {
+    color: var(--violet-ryb);
+  }
+  
+  .item-manual {
+    color: var(--thistle);
+  }
+  
+  .deadline-passed-message {
+    color: #FF2222CC;
+  }
+  
+  .airdrop-smalltext {
+    color: var(--gainsboro-dim4);
+  }
+  
+  .monster-img {
+    opacity: 0.8;
+  }
+  
+  .monster-img:hover {
+    opacity: 1;
+  }
+  
+  .ipfs-link {
+    color: darkcyan;
+  }
+  .ipfs-link:hover {
+    color: cyan;
+  }
+  
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
