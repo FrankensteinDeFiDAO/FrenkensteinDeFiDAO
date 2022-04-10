@@ -6,7 +6,7 @@ import "./interfaces/IFocusPool.sol";
 
 import "hardhat/console.sol";
 
-contract MockFocusPool is IFocusPool, ERC20PresetFixedSupply("Focus Liquidity", "FLP", 1000000000000000000000000, msg.sender) {
+contract MockFocusPool is IFocusPool, ERC20PresetFixedSupply("Focus Liquidity", "FLP", 0, msg.sender) {
     uint16 public swapFee;
     uint16 public constant SWAP_FEE_DENOM = 10000;
     uint256 public constant DENOM = 10**18;
