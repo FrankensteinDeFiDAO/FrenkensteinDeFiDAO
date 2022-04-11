@@ -30,14 +30,6 @@ function Home(props) {
                         </Link>
 
                         <br />
-
-                        <Link to="/remove">
-                            <Button className="fix-btn">
-                                Remove
-                            </Button>
-                        </Link>
-
-                        <br />
                         <br />
 
 
@@ -54,6 +46,15 @@ function Home(props) {
                                 Execute
                             </Button>
                         </Link>
+
+                        <br />
+
+                        <Link to="/remove">
+                            <Button className="fix-btn">
+                                Remove
+                            </Button>
+                        </Link>
+                        
                     </div></Col>
             </Row>
         </Container>

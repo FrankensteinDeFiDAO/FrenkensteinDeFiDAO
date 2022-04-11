@@ -31,35 +31,44 @@ function Header(props) {
                 } />
                 <Route path="/execute" element={props.account &&
                     <>
-                        <Link to={"/robot"} className="menuItem">Create Robot</Link >
                         <Link to={"/manual"} className="menuItem">Create Manual</Link >
+                        <Link to={"/robot"} className="menuItem">Create Robot</Link >
                         <Link to={"/vote"} className="menuItem">Vote</Link >
-                        <Link to={"/execute"} className="menuItem">Execute</Link >
+                        <Link to={"/remove"} className="menuItem">Remove</Link >
                     </>
                 } />
 
                 <Route path="/vote" element={props.account &&
                     <>
-                        <Link to={"/robot"} className="menuItem">Create Robot</Link >
                         <Link to={"/manual"} className="menuItem">Create Manual</Link >
-                        <Link to={"/vote"} className="menuItem">Vote</Link >
+                        <Link to={"/robot"} className="menuItem">Create Robot</Link >
                         <Link to={"/execute"} className="menuItem">Execute</Link >
+                        <Link to={"/remove"} className="menuItem">Remove</Link >
                     </>
                 } />
 
                 <Route path="/manual" element={props.account &&
                     <>
                         <Link to={"/robot"} className="menuItem">Create Robot</Link >
-                        <Link to={"/manual"} className="menuItem">Create Manual</Link >
                         <Link to={"/vote"} className="menuItem">Vote</Link >
                         <Link to={"/execute"} className="menuItem">Execute</Link >
+                        <Link to={"/remove"} className="menuItem">Remove</Link >
                     </>
                 } />
 
                 <Route path="/robot" element={props.account &&
                     <>
-                        <Link to={"/robot"} className="menuItem">Create Robot</Link >
                         <Link to={"/manual"} className="menuItem">Create Manual</Link >
+                        <Link to={"/vote"} className="menuItem">Vote</Link >
+                        <Link to={"/execute"} className="menuItem">Execute</Link >
+                        <Link to={"/remove"} className="menuItem">Remove</Link >
+                    </>
+                } />
+
+                <Route path="/remove" element={props.account &&
+                    <>
+                        <Link to={"/manual"} className="menuItem">Create Manual</Link >
+                        <Link to={"/robot"} className="menuItem">Create Robot</Link >
                         <Link to={"/vote"} className="menuItem">Vote</Link >
                         <Link to={"/execute"} className="menuItem">Execute</Link >
                     </>
