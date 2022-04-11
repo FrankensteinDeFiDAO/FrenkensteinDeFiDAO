@@ -11,7 +11,7 @@ import ExecuteComponent from './components/Execute.js';
 import VoteComponent from './components/Vote.js';
 import CreateManual from './components/CreateManual.js';
 import CreateRobot from './components/CreateRobot.js';
-import Remove from './components/Remove.js';
+import RemoveComponent from './components/Remove.js';
 import Home from './components/Home.js';
 
 import monster from './utils/monster.png';
@@ -103,7 +103,7 @@ function App() {
             <Route path="/vote" element={<VoteComponent />} />
             <Route path="/manual" element={<CreateManual />} />
             <Route path="/robot" element={<CreateRobot />} />
-            <Route path="/remove" element={<Remove />} />
+            <Route path="/remove" element={<RemoveComponent />} />
           </Routes>
             : <>
               <img src={monster} alt='Frankenstein DeFi DAO' style={{ width: "220px", marginBottom:"2rem" }} className="monster-img" />
