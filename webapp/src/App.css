@@ -240,6 +240,10 @@
     color: #FF2222CC;
   }
   
+  .already-voted-message {
+    color: #FFba01;
+  }
+  
   .airdrop-smalltext {
     color: var(--gainsboro-dim4);
   }

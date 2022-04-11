@@ -55,6 +55,10 @@ function VoteComponent() {
     return (selectedProposal != null && voteChoice != null);
   }
 
+  const proposalAlreadyVoted = () => {
+    return (selectedProposal.iVoted.isGreaterThan(0));
+  }
+
   const getProposals = async () => {
     try {
       const { ethereum } = window;
@@ -209,8 +213,8 @@ function VoteComponent() {
                 Yes votes:
                 <span className="proposal-value">
                   {
-                    selectedProposal.yesVotes.isGreaterThan(0) 
-                      ? <span>&nbsp; {selectedProposal.yesVotes.toString()} / {totalSupply.toString()} ({new BigNumber(selectedProposal.yesVotes.div(totalSupply)).multipliedBy(100).toString()}%)</span> 
+                    selectedProposal.yesVotes.isGreaterThan(0)
+                      ? <span>&nbsp; {selectedProposal.yesVotes.toString()} / {totalSupply.toString()} ({new BigNumber(selectedProposal.yesVotes.div(totalSupply)).multipliedBy(100).toString()}%)</span>
                       : <span>&nbsp; {selectedProposal.yesVotes.toString()} / {totalSupply.toString()} </span>
                   }
                 </span>
@@ -235,17 +239,26 @@ function VoteComponent() {
 
           <div>
             {deadlineNotPassed
-              ? <><h5>Your vote</h5>
-                <div onChange={(e) => setVote(e)}>
-                  <span className="radio-container">
-                    <input type="radio" value="true" name="voting-option" /> Yes
-                  </span>
-                  <span className="radio-container">
-                    <input type="radio" value="false" name="voting-option" /> No
-                  </span>
-                </div></>
+              ? <>
+                {proposalAlreadyVoted()
+                  ? <span className="already-voted-message">Already voted!</span>
+                  : <>
+                    <h5>Your vote</h5>
+                    <div onChange={(e) => setVote(e)}>
+                      <span className="radio-container">
+                        <input type="radio" value="true" name="voting-option" /> Yes
+                      </span>
+                      <span className="radio-container">
+                        <input type="radio" value="false" name="voting-option" /> No
+                      </span>
+                    </div>
+                  </>
+                }
+              </>
               : <span className="deadline-passed-message">Deadline already passed!</span>}
           </div>
+
+
 
         </div>
       }
@@ -254,7 +267,7 @@ function VoteComponent() {
     <br />
 
     <div>
-      <Button className="btn-primary" onClick={vote} disabled={!checkCanVote() || !deadlineNotPassed}>Vote</Button>
+      <Button className="btn-primary" onClick={vote} disabled={!checkCanVote() || !deadlineNotPassed || !proposalAlreadyVoted()}>Vote</Button>
       <Button className="btn-secondary" onClick={cancel} disabled={!checkCanVote()}>Cancel</Button>
     </div>
 
