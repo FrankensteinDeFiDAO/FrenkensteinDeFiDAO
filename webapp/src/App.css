@@ -105,6 +105,10 @@
   
   .fix-btn {
     min-width: 10rem !important;
+    opacity: .8;
+  }
+  .fix-btn:hover {
+    opacity: 1;
   }
   
   .btn-primary {

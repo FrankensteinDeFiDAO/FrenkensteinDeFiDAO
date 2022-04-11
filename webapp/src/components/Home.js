@@ -11,7 +11,7 @@ function Home(props) {
 
         <Container fluid style={{maxWidth:"40rem"}}>
             <Row>
-                <Col><img src={monster} alt='Frankenstein DeFi DAO' style={{ width: "220px", marginTop:"2rem" }} className="monster-img" /></Col>
+                <Col><img src={monster} alt='Frankenstein DeFi DAO' style={{ width: "220px", marginTop:"3rem" }} className="monster-img" /></Col>
                 <Col>
                     <div>
 
@@ -26,6 +26,14 @@ function Home(props) {
                         <Link to="/robot">
                             <Button className="fix-btn">
                                 Create Robot
+                            </Button>
+                        </Link>
+
+                        <br />
+
+                        <Link to="/remove">
+                            <Button className="fix-btn">
+                                Remove
                             </Button>
                         </Link>
 
