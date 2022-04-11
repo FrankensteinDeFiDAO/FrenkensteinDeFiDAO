@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import React, { useEffect, useInsertionEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
@@ -191,7 +191,14 @@ function ExecuteComponent() {
                 {selectedProposal.p1.toString() !== '0' ? <>Robot address: <span className="proposal-address">{selectedProposal.p1.toHexString()}</span></> : <>&nbsp;</>}
               </div>
               <div className="proposal-line">
-                Yes votes: <span className="proposal-value">{selectedProposal.yesVotes.toString()}</span>
+                Yes votes: 
+                <span className="proposal-value">
+                  {
+                    selectedProposal.yesVotes.isGreaterThan(0) 
+                      ? <span>&nbsp; {selectedProposal.yesVotes.toString()} / {totalSupply.toString()} ({new BigNumber(selectedProposal.yesVotes.div(totalSupply)).multipliedBy(100).toString()}%)</span> 
+                      : <span>&nbsp; {selectedProposal.yesVotes.toString()} / {totalSupply.toString()} </span>
+                  }
+                </span>
               </div>
               <div className="proposal-line">
                 Deadline block : <span className="proposal-value">{selectedProposal.deadlineBlock.toString()}</span>

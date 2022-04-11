@@ -1,6 +1,5 @@
 import { ethers } from "ethers";
 
-// import { getContractAddress } from "ethers/lib/utils";
 import React, { useEffect, useState } from "react";
 import { Button } from 'react-bootstrap';
 
@@ -14,7 +13,6 @@ import consensus from '../utils/consensus.png';
 
 
 function VoteComponent() {
-  const [proposalCount, setProposalCount] = useState(0);
   const [proposals, setProposals] = useState([]);
   const [selectedProposal, setSelected] = useState(null);
   const [voteChoice, setChoice] = useState(null);
@@ -66,7 +64,6 @@ function VoteComponent() {
 
       const pCount = (await contract.numProposals()).toString();
       console.log('count: ' + pCount);
-      setProposalCount(pCount);
 
       let parsedProposals = [];
 
@@ -78,7 +75,7 @@ function VoteComponent() {
           op: proposal.op,
           p0: proposal.p0,
           p1: proposal.p1,
-          yesVotes: proposal.yesVotes,
+          yesVotes: new BigNumber(proposal.yesVotes.toString()),
           deadlineBlock: new BigNumber(proposal.deadlineBlock.toString()),
           iVoted: new BigNumber(proposal.iVoted.toString())
         }
@@ -204,13 +201,19 @@ function VoteComponent() {
                 </span>
                 <span>:&nbsp;</span>
                 <span className="proposal-value">{selectedProposal.p0.toString()}</span>
-                {/* <span>{JSON.stringify(selectedProposal.p0)}</span> */}
               </div>
               <div className="proposal-line">
                 {selectedProposal.p1.toString() !== '0' ? <>Robot address: <span className="proposal-address">{selectedProposal.p1.toHexString()}</span></> : <>&nbsp;</>}
               </div>
               <div className="proposal-line">
-                Yes votes: <span className="proposal-value">{selectedProposal.yesVotes.toString()}</span>
+                Yes votes:
+                <span className="proposal-value">
+                  {
+                    selectedProposal.yesVotes.isGreaterThan(0) 
+                      ? <span>&nbsp; {selectedProposal.yesVotes.toString()} / {totalSupply.toString()} ({new BigNumber(selectedProposal.yesVotes.div(totalSupply)).multipliedBy(100).toString()}%)</span> 
+                      : <span>&nbsp; {selectedProposal.yesVotes.toString()} / {totalSupply.toString()} </span>
+                  }
+                </span>
               </div>
               <div className="proposal-line">
                 Deadline block : <span className="proposal-value">{selectedProposal.deadlineBlock.toString()}</span>
@@ -221,7 +224,7 @@ function VoteComponent() {
                   {
                     selectedProposal.iVoted.toString() !== '0'
                       ? <span>&nbsp; {selectedProposal.iVoted.toString()} / {totalSupply.toString()} ({new BigNumber(selectedProposal.iVoted.div(totalSupply)).multipliedBy(100).toString()}%)</span>
-                      : <>&nbsp; {selectedProposal.iVoted.toString()} / {totalSupply.toString()}</>
+                      : <span>&nbsp; {selectedProposal.iVoted.toString()} / {totalSupply.toString()} </span>
                   }
                 </span>
               </div>
