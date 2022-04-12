@@ -2,7 +2,7 @@ import { ethers } from "ethers";
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
-import env from "react-dotenv";
+// import env from "react-dotenv";
 
 
 import abi from "../utils/FrankensteinDAO.json";
