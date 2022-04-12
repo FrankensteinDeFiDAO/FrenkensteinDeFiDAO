@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Navbar } from 'react-bootstrap';
 import { Link, Routes, Route } from "react-router-dom";
+import Blockies from 'react-blockies';
 import monster from '../utils/monster.png';
 import '../App.css';
 
@@ -16,7 +17,10 @@ function Header(props) {
                     <Navbar.Text>
                         {
                             props.account
-                                ? <><div>{props.account}</div> </>
+                                ? <><div>
+                                    <Blockies seed={props.account} />
+                                    {/* {props.account} */}
+                                </div> </>
                                 : <div>Not Connected</div>
                         }
                     </Navbar.Text>
