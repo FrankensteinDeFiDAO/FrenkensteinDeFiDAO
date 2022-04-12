@@ -2,6 +2,7 @@ import { ethers } from "ethers";
 
 import React, { useEffect, useState } from "react";
 import { Button } from 'react-bootstrap';
+import { Link } from "react-router-dom";
 
 import BigNumber from "bignumber.js";
 
@@ -142,6 +143,21 @@ function VoteComponent() {
   return (<div>
     <h3>Vote on proposal </h3>
     <img src={consensus} alt='Deploy Robot' style={{ width: "160px", margin: "1rem" }} />
+
+    <>
+      {
+        proposals.length === 0 &&
+        <div className="no-proposals">
+          <div style={{ padding: ".5rem" }}>No appropriate proposals</div>
+          <div>
+            <Link to={"/robot"} className="menuItem">Create Robot</Link >
+            <Link to={"/manual"} className="menuItem">Create Manual</Link >
+          </div>
+        </div>
+      }
+    </>
+
+
     <div style={{ maxWidth: "100%", alignContent: "center" }}>
       <div className="proposals-list" >
         {proposals.map((p, index) => {
