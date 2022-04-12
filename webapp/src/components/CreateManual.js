@@ -13,7 +13,7 @@ function CreateManual() {
   const [deadline, setDeadline] = useState(null);
   const [parameter, setParameter] = useState(null);
 
-  const contractAddress = window.env.CONTRACT_ADDRESS;
+  const contractAddress = "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707";
   const contractABI = abi.abi;
   const navigate = useNavigate();
 
