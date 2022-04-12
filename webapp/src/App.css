@@ -267,6 +267,11 @@
     color: cyan;
   }
   
+.blockie {
+  vertical-align: middle;
+  margin-left: .5rem;
+}
+
   @keyframes App-logo-spin {
     from {
       transform: rotate(0deg);

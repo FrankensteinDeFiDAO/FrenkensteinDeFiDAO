@@ -6,6 +6,10 @@ import monster from '../utils/monster.png';
 import '../App.css';
 
 function Header(props) {
+    const shortAddress = () => {
+        return props.account.substring(0, 6) + "..." + props.account.substring(36);
+    }
+
     return (
         <>
             <Navbar variant="dark" className="header">
@@ -17,10 +21,11 @@ function Header(props) {
                     <Navbar.Text>
                         {
                             props.account
-                                ? <><div>
-                                    <Blockies seed={props.account} />
-                                    {/* {props.account} */}
-                                </div> </>
+                                ?
+                                <div>
+                                    <span style={{ display: "table-cell", verticalAlign: "middle" }}>{shortAddress()}</span>
+                                    <span style={{ display: "table-cell", verticalAlign: "middle" }}><Blockies seed={props.account} className="blockie" /></span>
+                                </div>
                                 : <div>Not Connected</div>
                         }
                     </Navbar.Text>
