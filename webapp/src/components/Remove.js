@@ -60,11 +60,28 @@ function RemoveComponent() {
     }
 
     const remove = async () => {
+        const { ethereum } = window;
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+        const contract = new ethers.Contract(contractAddress, contractABI, signer);
 
+        console.log('addr: ' + contractAddress);
+        console.log('id: ' + selectedProposal.id);
+
+        const tx = await contract.remove(selectedProposal.id);
+        const result = await tx.wait();
+
+        console.log(tx);
+        console.log(result);
+
+        if (tx != null) {
+            alert("Removed!");
+            window.location.reload(false);
+        }
     }
 
     const canRemoveSelected = () => {
-        return false;
+        return selectedProposal != null;
     }
 
     useEffect(() => {
