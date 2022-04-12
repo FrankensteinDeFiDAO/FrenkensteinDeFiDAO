@@ -12,7 +12,7 @@ function RemoveComponent() {
     const [selectedProposal, setSelected] = useState(null);
     const [totalSupply, setTotalSupply] = useState(null);
 
-    const contractAddress = "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707";
+    const contractAddress = window.env.CONTRACT_ADDRESS;
     const contractABI = abi.abi;
     const poolABI = poolAbi.abi;
 

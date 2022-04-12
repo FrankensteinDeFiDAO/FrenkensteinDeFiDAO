@@ -2,6 +2,8 @@ import { ethers } from "ethers";
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
+import env from "react-dotenv";
+
 
 import abi from "../utils/FrankensteinDAO.json";
 import roboman from '../utils/roboman.png';
@@ -11,7 +13,7 @@ function CreateManual() {
   const [deadline, setDeadline] = useState(null);
   const [parameter, setParameter] = useState(null);
 
-  const contractAddress = "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707";
+  const contractAddress = window.env.CONTRACT_ADDRESS;
   const contractABI = abi.abi;
   const navigate = useNavigate();
 

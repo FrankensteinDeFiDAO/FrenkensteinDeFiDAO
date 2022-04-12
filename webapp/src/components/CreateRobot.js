@@ -14,7 +14,7 @@ function CreateRobot() {
   const [deadline, setDeadline] = useState(null);
   const [cycle, setCycle] = useState(null);
 
-  const contractAddress = "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707";
+  const contractAddress = window.env.CONTRACT_ADDRESS;
   const contractABI = abi.abi;
   const robotABI = robotAbi.abi;
   const bytecode = robotAbi.bytecode;

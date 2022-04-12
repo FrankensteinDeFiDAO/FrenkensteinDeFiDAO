@@ -16,6 +16,8 @@ import Home from './components/Home.js';
 
 import monster from './utils/monster.png';
 
+// require('dotenv').config();
+
 function App() {
   const [account, setAccount] = useState(null);
   const [chain, setChain] = useState(null);
@@ -106,12 +108,12 @@ function App() {
             <Route path="/remove" element={<RemoveComponent />} />
           </Routes>
             : <>
-              <img src={monster} alt='Frankenstein DeFi DAO' style={{ width: "220px", marginBottom:"2rem" }} className="monster-img" />
+              <img src={monster} alt='Frankenstein DeFi DAO' style={{ width: "220px", marginBottom: "2rem" }} className="monster-img" />
               <div><Button onClick={connectWallet}>Connect MetaMask</Button></div>
 
-              <div style={{display:"block", marginTop: "2rem"}}>
-              <h4 style={{ maxWidth: "40rem", margin:"auto"}}>Automated Market Maker DAO</h4>
-              <h4 style={{ maxWidth: "40rem", margin:"auto"}}>human-bot collaboration to maximize capital efficiency.</h4>
+              <div style={{ display: "block", marginTop: "2rem" }}>
+                <h4 style={{ maxWidth: "40rem", margin: "auto" }}>Automated Market Maker DAO</h4>
+                <h4 style={{ maxWidth: "40rem", margin: "auto" }}>human-bot collaboration to maximize capital efficiency.</h4>
               </div>
             </>}
 

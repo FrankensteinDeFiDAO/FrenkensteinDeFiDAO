@@ -5,6 +5,7 @@ import { Button } from 'react-bootstrap';
 
 import BigNumber from "bignumber.js";
 
+
 import abi from "../utils/FrankensteinDAO.json";
 import poolAbi from "../utils/IFocusPool.json";
 
@@ -19,7 +20,7 @@ function VoteComponent() {
   const [totalSupply, setTotalSupply] = useState(null);
   const [deadlineNotPassed, setDeadlineNotPassed] = useState(true);
 
-  const contractAddress = "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707";
+  const contractAddress = window.env.CONTRACT_ADDRESS;
   const contractABI = abi.abi;
   const poolABI = poolAbi.abi;
 
