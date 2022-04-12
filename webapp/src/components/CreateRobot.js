@@ -2,7 +2,6 @@ import { ethers } from "ethers";
 import { Button } from 'react-bootstrap';
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import { loadVersion, getVersions } from 'browser-solc';
 import * as IPFS from 'ipfs-core'
 import robotAbi from "../utils/MockRobot.json";
 import abi from "../utils/FrankensteinDAO.json";
@@ -40,7 +39,7 @@ function CreateRobot() {
     const { ethereum } = window;
     const provider = new ethers.providers.Web3Provider(ethereum);
     const signer = provider.getSigner();
-    const factory = new ethers.ContractFactory(robotAbi.abi, bytecode, signer);
+    const factory = new ethers.ContractFactory(robotABI, bytecode, signer);
     const contract = await factory.deploy();
     console.log('contract: ' + contract.address);
     const mined = await contract.deployed();
