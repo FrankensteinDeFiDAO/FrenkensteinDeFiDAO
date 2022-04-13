@@ -179,8 +179,6 @@ function VoteComponent() {
         <div>
           <ProposalComponent totalSupply={totalSupply} selected={selectedProposal} />
 
-          <br />
-
           <div>
             {deadlineNotPassed
               ? <>

@@ -127,14 +127,12 @@ function RemoveComponent() {
 
         <div>
             {selectedProposal &&
+                <>
                 <ProposalComponent totalSupply={totalSupply} selected={selectedProposal} />
+                <Button className="btn-custom-primary" onClick={remove} disabled={!canRemoveSelected()} style={{marginTop: "1rem"}}>Propose removal</Button>
+                </>
             }
         </div>
-
-        <div>
-            <Button className="btn-custom-primary" onClick={remove} disabled={!canRemoveSelected()}>Propose removal</Button>
-        </div>
-
     </div>);
 }
 
