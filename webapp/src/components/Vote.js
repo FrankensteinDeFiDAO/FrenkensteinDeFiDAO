@@ -37,8 +37,6 @@ function VoteComponent() {
     const blockBig = await provider.getBlockNumber();
     const currentBlock = new BigNumber(blockBig);
 
-    console.log(currentBlock.toString() + " " + proposal.deadlineBlock);
-
     const notPassed = proposal.deadlineBlock.isGreaterThan(currentBlock);
     setDeadlineNotPassed(notPassed);
   }
@@ -156,7 +154,6 @@ function VoteComponent() {
       }
     </>
 
-
     <div style={{ maxWidth: "100%", alignContent: "center" }}>
       <div className="proposals-list" >
         {proposals.map((p, index) => {
@@ -200,19 +197,13 @@ function VoteComponent() {
               : <span className="deadline-passed-message">Deadline already passed!</span>}
           </div>
 
-
-
+          <div style={{marginTop:"1rem"}}>
+            <Button className="btn-primary" onClick={vote} disabled={!checkCanVote() || !deadlineNotPassed || proposalAlreadyVoted()}>Vote</Button>
+            <Button className="btn-secondary" onClick={cancel} disabled={!checkCanVote()}>Cancel</Button>
+          </div>
         </div>
       }
     </div>
-
-    <br />
-
-    <div>
-      <Button className="btn-primary" onClick={vote} disabled={!checkCanVote() || !deadlineNotPassed || !proposalAlreadyVoted()}>Vote</Button>
-      <Button className="btn-secondary" onClick={cancel} disabled={!checkCanVote()}>Cancel</Button>
-    </div>
-
   </div>)
 }
 

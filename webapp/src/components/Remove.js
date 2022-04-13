@@ -53,7 +53,7 @@ function RemoveComponent() {
                 }
 
 
-                if(proposal.op === 3) {
+                if (proposal.op === 3) {
                     parsedProposals.push(parsedProposal);
                 }
             }
@@ -128,8 +128,8 @@ function RemoveComponent() {
         <div>
             {selectedProposal &&
                 <>
-                <ProposalComponent totalSupply={totalSupply} selected={selectedProposal} />
-                <Button className="btn-custom-primary" onClick={remove} disabled={!canRemoveSelected()} style={{marginTop: "1rem"}}>Propose removal</Button>
+                    <ProposalComponent totalSupply={totalSupply} selected={selectedProposal} />
+                    <Button className="btn-custom-primary" onClick={remove} disabled={!canRemoveSelected()} style={{ marginTop: "1rem" }}>Propose removal</Button>
                 </>
             }
         </div>
