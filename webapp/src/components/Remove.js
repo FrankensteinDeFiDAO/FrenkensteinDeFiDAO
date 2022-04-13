@@ -77,7 +77,7 @@ function RemoveComponent() {
         console.log(result);
 
         if (tx != null) {
-            alert("Removed!");
+            alert("Removal proposal created!");
             window.location.reload(false);
         }
     }
