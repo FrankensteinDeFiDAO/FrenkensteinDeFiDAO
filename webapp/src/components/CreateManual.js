@@ -46,7 +46,6 @@ function CreateManual() {
     const signer = provider.getSigner();
     const contract = new ethers.Contract(contractAddress, contractABI, signer);
 
-    // @! accept
     const tx = await contract.propose(op, deadline, [parameter]);
     const result = await tx.wait();
 

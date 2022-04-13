@@ -68,7 +68,9 @@ function RemoveComponent() {
         console.log('addr: ' + contractAddress);
         console.log('id: ' + selectedProposal.id);
 
-        const tx = await contract.remove(selectedProposal.id);
+        const botAddress = selectedProposal.p1;
+
+        const tx = await contract.propose(4, 0, [0, botAddress]);
         const result = await tx.wait();
 
         console.log(tx);
