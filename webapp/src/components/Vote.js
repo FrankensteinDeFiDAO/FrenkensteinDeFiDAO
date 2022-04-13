@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Button } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import ProposalComponent from "./ProposalComponent";
+import ProposalButton from "./ProposalButton";
 
 import BigNumber from "bignumber.js";
 
@@ -154,7 +155,7 @@ function VoteComponent() {
       }
     </>
 
-    <div style={{ maxWidth: "100%", alignContent: "center" }}>
+    {/* <div style={{ maxWidth: "100%", alignContent: "center" }}>
       <div className="proposals-list" >
         {proposals.map((p, index) => {
           return (
@@ -166,6 +167,16 @@ function VoteComponent() {
                   : <span className="item-manual">Manual</span>}
               </div>
             </div>
+          )
+        })}
+      </div>
+    </div> */}
+
+<div style={{ maxWidth: "100%", alignContent: "center" }}>
+      <div className="proposals-list" >
+        {proposals.map((proposal, index) => {
+          return (
+            <ProposalButton index={index} proposal={proposal} selectProposal={selectProposal} selected={selectedProposal} />
           )
         })}
       </div>
