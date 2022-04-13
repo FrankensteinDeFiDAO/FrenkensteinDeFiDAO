@@ -177,7 +177,7 @@ function VoteComponent() {
         {proposals.map((proposal, index) => {
           return (
             <ProposalButton index={index} proposal={proposal} selectProposal={selectProposal} selected={selectedProposal} />
-          )
+          );
         })}
       </div>
     </div>

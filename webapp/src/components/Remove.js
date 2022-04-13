@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Button } from 'react-bootstrap';
 
 import ProposalComponent from './ProposalComponent.js';
+import ProposalButton from "./ProposalButton.js";
 
 import BigNumber from "bignumber.js";
 
@@ -101,17 +102,10 @@ function RemoveComponent() {
         <div style={{ maxWidth: "100%", alignContent: "center" }}>
             <div className="proposals-list">
                 <>
-                    {proposals.map((p, index) => {
+                    {proposals.map((proposal, index) => {
                         return (
-                            <div key={index} className={"proposal-item " + (selectedProposal === p && "proposal-item-selected")} style={{ textAlign: "center" }} onClick={() => selectProposal(p)}>
-                                <div>Proposal {p.id.toString()}</div>
-                                <div>
-                                    {p.p1.toString() !== '0'
-                                        ? <span className="item-robot">Robot</span>
-                                        : <span className="item-manual">Manual</span>}
-                                </div>
-                            </div>
-                        )
+                            <ProposalButton index={index} proposal={proposal} selectProposal={selectProposal} selected={selectedProposal} />
+                        );
                     })}
                 </>
                 <>
