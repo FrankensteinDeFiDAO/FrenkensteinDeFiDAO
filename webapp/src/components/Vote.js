@@ -1,11 +1,10 @@
 import { ethers } from "ethers";
-
 import React, { useEffect, useState } from "react";
 import { Button } from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import ProposalComponent from "./ProposalComponent";
 
 import BigNumber from "bignumber.js";
-
 
 import abi from "../utils/FrankensteinDAO.json";
 import poolAbi from "../utils/IFocusPool.json";
@@ -178,79 +177,7 @@ function VoteComponent() {
     <div>
       {selectedProposal &&
         <div>
-          <div className="proposal-show-container">
-            <div className="proposal-show">
-              <div className="proposal-line">
-                Operation:&nbsp;
-                <span className="proposal-value">
-                  {
-                    selectedProposal.op.toString() === '0'
-                      ? 'Set Swap Free (' + selectedProposal.op.toString() + ')'
-                      : selectedProposal.op.toString() === '1'
-                        ? 'Shift Range (' + selectedProposal.op.toString() + ')'
-                        : selectedProposal.op.toString() === '2'
-                          ? 'Zoom Range (' + selectedProposal.op.toString() + ')'
-                          : selectedProposal.op.toString() === '3'
-                            ? 'Robot Strategy (' + selectedProposal.op.toString() + ')'
-                            : selectedProposal.op.toString() === '4'
-                              ? 'Remove Robot (' + selectedProposal.op.toString() + ')'
-                              : 'Unknown Operation'
-                  }
-                </span>
-              </div>
-
-
-              {/*  swap fee: n / 100  -- %   > 30 == 0.3% */}
-              {/* others 18 decimals */}
-
-              <div className="proposal-line">
-                <span>
-                  {
-                    selectedProposal.op.toString() === '0'
-                      ? 'Swap Fee'
-                      : selectedProposal.op.toString() === '1'
-                        ? 'Shift Factor'
-                        : selectedProposal.op.toString() === '2'
-                          ? 'Zoom Factor'
-                          : selectedProposal.op.toString() === '3'
-                            ? 'Cycle'
-                            : selectedProposal.op.toString() === '4'
-                              ? 'Proposal ID'
-                              : 'Unknown'
-                  }
-
-                </span>
-                <span>:&nbsp;</span>
-                <span className="proposal-value">{selectedProposal.p0.toString()}</span>
-              </div>
-              <div className="proposal-line">
-                {selectedProposal.p1.toString() !== '0' ? <>Robot address: <span className="proposal-address">{selectedProposal.p1.toHexString()}</span></> : <>&nbsp;</>}
-              </div>
-              <div className="proposal-line">
-                Yes votes:
-                <span className="proposal-value">
-                  {
-                    selectedProposal.yesVotes.isGreaterThan(0)
-                      ? <span>&nbsp; {selectedProposal.yesVotes.toString()} / {totalSupply.toString()} ({new BigNumber(selectedProposal.yesVotes.div(totalSupply)).multipliedBy(100).toString()}%)</span>
-                      : <span>&nbsp; {selectedProposal.yesVotes.toString()} / {totalSupply.toString()} </span>
-                  }
-                </span>
-              </div>
-              <div className="proposal-line">
-                Deadline block : <span className="proposal-value">{selectedProposal.deadlineBlock.toString()}</span>
-              </div>
-              <div className="proposal-line">
-                I voted:
-                <span className="proposal-value">
-                  {
-                    selectedProposal.iVoted.toString() !== '0'
-                      ? <span>&nbsp; {selectedProposal.iVoted.toString()} / {totalSupply.toString()} ({new BigNumber(selectedProposal.iVoted.div(totalSupply)).multipliedBy(100).toString()}%)</span>
-                      : <span>&nbsp; {selectedProposal.iVoted.toString()} / {totalSupply.toString()} </span>
-                  }
-                </span>
-              </div>
-            </div>
-          </div>
+          <ProposalComponent totalSupply={totalSupply} selected={selectedProposal} />
 
           <br />
 

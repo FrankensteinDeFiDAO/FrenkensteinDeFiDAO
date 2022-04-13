@@ -151,7 +151,9 @@ function ExecuteComponent() {
     <br />
     <h5><img src={peace} alt='Vote' style={{ width: "80px" }} /> Get the Airdrop (0.01 ETH)</h5>
     <div style={{ display: "flex", margin: "auto" }}>
-      <div className="airdrop-smalltext" style={{ maxWidth: "40rem", margin: "auto" }}>We are giving 0.01 ETH to anyone to execute an elected proposal. In Anchor protocol on Terra this is called "Airdrop" in a popup.</div>
+      <div className="airdrop-smalltext" style={{ maxWidth: "40rem", margin: "auto" }}>
+        We are giving 0.01 ETH to anyone to execute an elected proposal. In Anchor protocol on Terra this is called "Airdrop" in a popup.
+      </div>
     </div>
 
   </div>)
