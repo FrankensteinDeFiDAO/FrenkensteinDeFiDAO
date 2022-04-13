@@ -50,7 +50,10 @@ function RemoveComponent() {
                     iVoted: new BigNumber(proposal.iVoted.toString())
                 }
 
-                parsedProposals.push(parsedProposal);
+
+                if(proposal.op === 3) {
+                    parsedProposals.push(parsedProposal);
+                }
             }
             setProposals(parsedProposals);
         }
@@ -202,7 +205,7 @@ function RemoveComponent() {
         </div>
 
         <div>
-            <Button className="btn-custom-primary" onClick={remove} disabled={!canRemoveSelected()}>Remove selected</Button>
+            <Button className="btn-custom-primary" onClick={remove} disabled={!canRemoveSelected()}>Propose removal</Button>
         </div>
 
     </div>)
