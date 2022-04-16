@@ -1,4 +1,4 @@
-
+This [project's entry](https://showcase.ethglobal.com/daohacks/frankensteindefidao-sojy5) at the EthGlobal DAOHacks 2022 hackathon won a sponsor prize from IPFS/Filecoin. 
 
 # Frankenstein DeFi DAO - where people and robot members join forces to manage DeFi liquidity
 
