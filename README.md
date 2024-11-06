@@ -1,4 +1,4 @@
-[This project's entry](https://showcase.ethglobal.com/daohacks/frankensteindefidao-sojy5) at the [DAOHacks 2022](https://dao.ethglobal.com/) hackathon won the 🏊‍♂️ [IPFS — Pool Prize](https://showcase.ethglobal.com/daohacks/frankensteindefidao-sojy5). 
+[This project's entry](https://ethglobal.com/showcase/frankensteindefidao-sojy5) at the [DAOHacks 2022](https://ethglobal.com/events/daohacks) hackathon won the 🏊‍♂️ [IPFS — Pool Prize](https://ethglobal.com/showcase/frankensteindefidao-sojy5). 
 
 # Frankenstein DeFi DAO - where people and robot members join forces to manage DeFi liquidity
 
